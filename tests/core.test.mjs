@@ -9,6 +9,7 @@ test('brief validation enforces distinct wallets and bounded requirements',()=>{
 });
 test('only successful majority execution exposes a provisional or finalized result',()=>{
  assert.equal(lifecycle('ACCEPTED','FINISHED_WITH_RETURN','MAJORITY_AGREE'),'provisional');
+ assert.equal(lifecycle('ACCEPTED','FINISHED_WITH_RETURN','AGREE'),'provisional');
  assert.equal(lifecycle('FINALIZED','FINISHED_WITH_RETURN','MAJORITY_AGREE'),'finalized');
  assert.equal(lifecycle('FINALIZED','FINISHED_WITH_ERROR','MAJORITY_AGREE'),'execution_failed');
  assert.equal(lifecycle('FINALIZED','FINISHED_WITH_RETURN','NO_MAJORITY'),'no_consensus');

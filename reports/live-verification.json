@@ -1,0 +1,145 @@
+{
+  "startedAt": "2026-10-18T02:09:12.178Z",
+  "contract": "0xD9518Ccbc2093490c148095676aD79931b61DcC3",
+  "sourceSha256": "a54af1f46dcaee3ce719276b01c68991b6ca3afd369df0f122a0a4dfeb5438f2",
+  "creator": "0xfa47b90a45f11e1b8e5f1fefcc8f248c6ddbcdf1",
+  "contributor": "0xe7e726be79fb12c1103b489cb1adfa4e9f296e55",
+  "agreementId": "c8fb0fe0-6faf-4eb4-bfe9-0cf4a14a7dff",
+  "operations": {
+    "funding": {
+      "name": "funding",
+      "from": "0xfA47B90A45F11e1B8E5f1FeFCC8f248C6ddbcdf1",
+      "to": "0xe7E726Be79FB12C1103B489Cb1aDFa4E9f296E55",
+      "nonce": 29,
+      "maximumNetworkFeeGEN": "0.0000046553848254",
+      "state": "finalized",
+      "createdAt": "2026-10-18T02:09:16.951Z",
+      "evmHash": "0xe08b11dd35a0a16f86918f4e13777ba48e8142a3532b902c348a35216130503d",
+      "networkFeeGEN": "0.0000038492433"
+    },
+    "publish": {
+      "name": "publish",
+      "from": "0xfA47B90A45F11e1B8E5f1FeFCC8f248C6ddbcdf1",
+      "to": "0x0112Bf6e83497965A5fdD6Dad1E447a6E004271D",
+      "nonce": 30,
+      "maximumNetworkFeeGEN": "0.0003008656545984",
+      "state": "provisional",
+      "createdAt": "2026-10-18T02:09:47.329Z",
+      "method": "create_agreement",
+      "args": [
+        "{\"id\":\"c8fb0fe0-6faf-4eb4-bfe9-0cf4a14a7dff\",\"policy\":\"scopelock-scope-v1\",\"creator\":\"0xfa47b90a45f11e1b8e5f1fefcc8f248c6ddbcdf1\",\"contributor\":\"0xe7e726be79fb12c1103b489cb1adfa4e9f296e55\",\"title\":\"ScopeLock public test — portfolio brief\",\"requirements\":[\"Build exactly three pages: Home, About and Contact. An online store, checkout and payment integration are excluded.\",\"The pages must work on mobile and desktop. Use a font selected by the contributor unless the creator supplies a preferred font.\",\"The Contact page must display the creator-supplied email address as a clickable mailto link. No forms or backend services are included.\"]}"
+      ],
+      "evmHash": "0x58fa9cd45839c6ccb0b92e8a44d7f239668b10b1990a6a75c1cb6da63b548c74",
+      "networkFeeGEN": "0.0002378771871291",
+      "genHash": "0x79ae9074433729dabe429eb594bba2cf401047221695663ce27c256e85f088f1",
+      "consensusStatus": "ACCEPTED",
+      "executionResult": "FINISHED_WITH_RETURN",
+      "result": "AGREE",
+      "record": {
+        "accepted": true,
+        "agreement_hash": "f41d35a76ce119a55bc00ba5465e733c23cd9e66df37104c52da5641e55a7778",
+        "contributor": "0xe7e726be79fb12c1103b489cb1adfa4e9f296e55",
+        "creator": "0xfa47b90a45f11e1b8e5f1fefcc8f248c6ddbcdf1",
+        "id": "c8fb0fe0-6faf-4eb4-bfe9-0cf4a14a7dff",
+        "payload": "{\"id\":\"c8fb0fe0-6faf-4eb4-bfe9-0cf4a14a7dff\",\"policy\":\"scopelock-scope-v1\",\"creator\":\"0xfa47b90a45f11e1b8e5f1fefcc8f248c6ddbcdf1\",\"contributor\":\"0xe7e726be79fb12c1103b489cb1adfa4e9f296e55\",\"title\":\"ScopeLock public test — portfolio brief\",\"requirements\":[\"Build exactly three pages: Home, About and Contact. An online store, checkout and payment integration are excluded.\",\"The pages must work on mobile and desktop. Use a font selected by the contributor unless the creator supplies a preferred font.\",\"The Contact page must display the creator-supplied email address as a clickable mailto link. No forms or backend services are included.\"]}",
+        "policy": "scopelock-scope-v1",
+        "requirements": [
+          "Build exactly three pages: Home, About and Contact. An online store, checkout and payment integration are excluded.",
+          "The pages must work on mobile and desktop. Use a font selected by the contributor unless the creator supplies a preferred font.",
+          "The Contact page must display the creator-supplied email address as a clickable mailto link. No forms or backend services are included."
+        ],
+        "title": "ScopeLock public test — portfolio brief"
+      }
+    },
+    "accept": {
+      "name": "accept",
+      "from": "0xe7E726Be79FB12C1103B489Cb1aDFa4E9f296E55",
+      "to": "0x0112Bf6e83497965A5fdD6Dad1E447a6E004271D",
+      "nonce": 0,
+      "maximumNetworkFeeGEN": "0.0002112774495477",
+      "state": "provisional",
+      "createdAt": "2026-10-18T02:10:16.797Z",
+      "method": "accept_agreement",
+      "args": [
+        "c8fb0fe0-6faf-4eb4-bfe9-0cf4a14a7dff",
+        "f41d35a76ce119a55bc00ba5465e733c23cd9e66df37104c52da5641e55a7778"
+      ],
+      "evmHash": "0x4284fe57f1c2fbe6f47b62686636fd0cb995a1112b9f73a772dde20630db6f3b",
+      "networkFeeGEN": "0.0001666137630513",
+      "genHash": "0xeb41197a909a1e24ebf6c0f9c0304bc785d25f0b720a122bef0f27f8ce6d9c46",
+      "consensusStatus": "ACCEPTED",
+      "executionResult": "FINISHED_WITH_RETURN",
+      "result": "AGREE",
+      "record": {
+        "accepted": true,
+        "agreement_hash": "f41d35a76ce119a55bc00ba5465e733c23cd9e66df37104c52da5641e55a7778",
+        "contributor": "0xe7e726be79fb12c1103b489cb1adfa4e9f296e55",
+        "creator": "0xfa47b90a45f11e1b8e5f1fefcc8f248c6ddbcdf1",
+        "id": "c8fb0fe0-6faf-4eb4-bfe9-0cf4a14a7dff",
+        "payload": "{\"id\":\"c8fb0fe0-6faf-4eb4-bfe9-0cf4a14a7dff\",\"policy\":\"scopelock-scope-v1\",\"creator\":\"0xfa47b90a45f11e1b8e5f1fefcc8f248c6ddbcdf1\",\"contributor\":\"0xe7e726be79fb12c1103b489cb1adfa4e9f296e55\",\"title\":\"ScopeLock public test — portfolio brief\",\"requirements\":[\"Build exactly three pages: Home, About and Contact. An online store, checkout and payment integration are excluded.\",\"The pages must work on mobile and desktop. Use a font selected by the contributor unless the creator supplies a preferred font.\",\"The Contact page must display the creator-supplied email address as a clickable mailto link. No forms or backend services are included.\"]}",
+        "policy": "scopelock-scope-v1",
+        "requirements": [
+          "Build exactly three pages: Home, About and Contact. An online store, checkout and payment integration are excluded.",
+          "The pages must work on mobile and desktop. Use a font selected by the contributor unless the creator supplies a preferred font.",
+          "The Contact page must display the creator-supplied email address as a clickable mailto link. No forms or backend services are included."
+        ],
+        "title": "ScopeLock public test — portfolio brief"
+      }
+    },
+    "already-required": {
+      "name": "already-required",
+      "from": "0xfA47B90A45F11e1B8E5f1FeFCC8f248C6ddbcdf1",
+      "to": "0x0112Bf6e83497965A5fdD6Dad1E447a6E004271D",
+      "nonce": 31,
+      "maximumNetworkFeeGEN": "0.0002482039737138",
+      "state": "provisional",
+      "createdAt": "2026-10-18T02:10:47.791Z",
+      "method": "request_ruling",
+      "args": [
+        "{\"id\":\"e6a0a766-6847-4e7f-83c1-6a65260e0cd6\",\"policy\":\"scopelock-scope-v1\",\"sender\":\"0xfa47b90a45f11e1b8e5f1fefcc8f248c6ddbcdf1\",\"agreement_id\":\"c8fb0fe0-6faf-4eb4-bfe9-0cf4a14a7dff\",\"agreement_hash\":\"f41d35a76ce119a55bc00ba5465e733c23cd9e66df37104c52da5641e55a7778\",\"request\":\"Make the Contact page email address a clickable mailto link.\"}"
+      ],
+      "evmHash": "0xb29a2550fa0c06c3637f6c195d9f7025948c8d4183e06a7be6fdc7b13a93dfe7",
+      "expected": "Already required",
+      "networkFeeGEN": "0.0001973747159373",
+      "genHash": "0x9068ecd36ebbd28cf309564cc97d3a46b301aa7aca1b86d935787f2468a35cb9",
+      "consensusStatus": "ACCEPTED",
+      "executionResult": "FINISHED_WITH_RETURN",
+      "result": "AGREE",
+      "record": {
+        "agreement_hash": "f41d35a76ce119a55bc00ba5465e733c23cd9e66df37104c52da5641e55a7778",
+        "agreement_id": "c8fb0fe0-6faf-4eb4-bfe9-0cf4a14a7dff",
+        "classification": "Clarification",
+        "clause_ids": [
+          3
+        ],
+        "explanation": "Requirement 3 already mandates that the Contact page must display the creator-supplied email address as a clickable mailto link. The request asks for precisely what is already expressly required, providing no new deliverable or expanded obligation.",
+        "id": "e6a0a766-6847-4e7f-83c1-6a65260e0cd6",
+        "limitations": "None. The request exactly matches the existing obligation.",
+        "payload": "{\"id\":\"e6a0a766-6847-4e7f-83c1-6a65260e0cd6\",\"policy\":\"scopelock-scope-v1\",\"sender\":\"0xfa47b90a45f11e1b8e5f1fefcc8f248c6ddbcdf1\",\"agreement_id\":\"c8fb0fe0-6faf-4eb4-bfe9-0cf4a14a7dff\",\"agreement_hash\":\"f41d35a76ce119a55bc00ba5465e733c23cd9e66df37104c52da5641e55a7778\",\"request\":\"Make the Contact page email address a clickable mailto link.\"}",
+        "policy": "scopelock-scope-v1",
+        "request": "Make the Contact page email address a clickable mailto link.",
+        "request_hash": "5421a4731f48e8b050bb2182f8eae5c4feb0fa2bdc06e0e0e7609316de6236d8",
+        "sender": "0xfa47b90a45f11e1b8e5f1fefcc8f248c6ddbcdf1"
+      }
+    },
+    "clarification": {
+      "name": "clarification",
+      "from": "0xfA47B90A45F11e1B8E5f1FeFCC8f248C6ddbcdf1",
+      "to": "0x0112Bf6e83497965A5fdD6Dad1E447a6E004271D",
+      "nonce": 32,
+      "maximumNetworkFeeGEN": "0.0002534347287639",
+      "state": "broadcast",
+      "createdAt": "2026-10-18T02:11:22.013Z",
+      "method": "request_ruling",
+      "args": [
+        "{\"id\":\"4fe7c264-b785-46e8-8afd-4294c5c29023\",\"policy\":\"scopelock-scope-v1\",\"sender\":\"0xfa47b90a45f11e1b8e5f1fefcc8f248c6ddbcdf1\",\"agreement_id\":\"c8fb0fe0-6faf-4eb4-bfe9-0cf4a14a7dff\",\"agreement_hash\":\"f41d35a76ce119a55bc00ba5465e733c23cd9e66df37104c52da5641e55a7778\",\"request\":\"For the agreed pages, use Inter as the preferred font supplied by the creator.\"}"
+      ],
+      "evmHash": "0x51c224cda8bad9cf10723f6ad74b776287f9a7c96356f0f1706f15f5be633be0",
+      "expected": "Clarification"
+    }
+  },
+  "scope": "Real Bradbury transactions with two encrypted test signers. These are contract/API checks, not proof of browser wallet signing.",
+  "sourceAndPolicyVerified": true,
+  "checkedAt": "2026-10-18T02:11:22.279Z",
+  "allFinalized": false
+}
