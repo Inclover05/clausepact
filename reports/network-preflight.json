@@ -1,0 +1,14 @@
+{
+  "checkedAt": "2026-10-18T02:03:27.772Z",
+  "sdkVersion": "1.1.8",
+  "runtime": "v0.2.17",
+  "network": "testnet-bradbury",
+  "expectedChainId": 4221,
+  "consensus": "0x0112Bf6e83497965A5fdD6Dad1E447a6E004271D",
+  "sourceSha256": "a54af1f46dcaee3ce719276b01c68991b6ca3afd369df0f122a0a4dfeb5438f2",
+  "chainWritesSent": false,
+  "chainId": 4221,
+  "consensusCode": true,
+  "lifecycleChainId": 4221,
+  "ok": true
+}
