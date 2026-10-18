@@ -1,1 +1,32 @@
-{"name":"scopelock","version":"1.0.0","private":true,"type":"module","engines":{"node":"24.x"},"scripts":{"dev":"next dev --port 5180","build":"next build --webpack","start":"next start --port 5180","typecheck":"tsc --noEmit","test":"node --test tests/*.test.mjs","test:contract":"python scripts/contract-tools.py test","verify:network":"node scripts/network-check.mjs"},"dependencies":{"next":"16.3.4","react":"19.2.6","react-dom":"19.2.6","genlayer-js":"1.1.8","viem":"2.57.3","lucide-react":"0.577.0"},"devDependencies":{"typescript":"5.9.3","@types/node":"22.19.19","@types/react":"19.2.14","@types/react-dom":"19.2.3"}}
+{
+  "name": "scopelock",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "24.x"
+  },
+  "scripts": {
+    "dev": "next dev --port 5180",
+    "build": "next build --webpack",
+    "start": "next start --port 5180",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test tests/*.test.mjs",
+    "test:contract": "python scripts/contract-tools.py test",
+    "verify:network": "node scripts/network-check.mjs"
+  },
+  "dependencies": {
+    "next": "16.3.4",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "genlayer-js": "1.1.8",
+    "viem": "2.57.3",
+    "lucide-react": "1.31.0"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "@types/node": "22.19.19",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3"
+  }
+}
