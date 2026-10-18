@@ -1,0 +1,48 @@
+{
+  "checkedAt": "2026-10-18T08:02:17.806Z",
+  "name": "ClausePact",
+  "url": "https://clausepact-inclover05s-projects.vercel.app",
+  "repository": "https://github.com/Inclover05/clausepact",
+  "projectId": "prj_Hr6FgRI1Yuc3CDRVd6yS46ybUqmH",
+  "teamId": "team_I9rpuV3OfkCf0woCzlxEGbyk",
+  "environment": "production",
+  "deploymentId": "dpl_DP2djW5XDf7fq9fLm5VXc1LMeXSa",
+  "deployedCommit": "1e77a38277fb9521afd5f1adc15127bd73640141",
+  "framework": "Next.js 16.3.4",
+  "state": "READY",
+  "buildDurationMs": 49071,
+  "contract": "0x96F604f62Dcc0957e3ea8554779EB4B5BE4bfae3",
+  "contractSourceSHA256": "cbde5e3606211624b082bbe0632cf7d9021354136068f0caff9c9f12ff5f6604",
+  "palette": "purple and black",
+  "surfaces": "translucent glass",
+  "demo": {
+    "path": "/demo.mp4",
+    "HTTPStatus": 200,
+    "bytes": 628261,
+    "type": "60-second edited actual UI captures, no signing footage"
+  },
+  "monitoring": {
+    "previousVerifiedDeploymentErrorLogs": 0,
+    "previousDeploymentId": "dpl_FkudWKMwsBQHycnHzkkT9BxUB4i5",
+    "errorScanWindow": "15 minutes",
+    "externalMonitoring": "not configured",
+    "deploymentErrorLogs": 0,
+    "scannedDeploymentId": "dpl_DP2djW5XDf7fq9fLm5VXc1LMeXSa"
+  },
+  "submission": "prepared; not submitted",
+  "apiVerification": {
+    "ok": true,
+    "passed": 20,
+    "total": 20,
+    "completedAt": "2026-10-18T08:02:04.226Z"
+  },
+  "checks": {
+    "javascriptTests": 13,
+    "directRuntimeContractTests": 15,
+    "typecheck": "passed",
+    "productionBuild": "passed",
+    "publicExamplesFinalized": 3,
+    "clarificationFollowup": "provisional",
+    "browserExtensionSigning": "unverified"
+  }
+}

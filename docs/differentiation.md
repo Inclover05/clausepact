@@ -11,7 +11,7 @@ Checked 18 October 2026 against the official [hackathon showcase](https://portal
 
 The distinct contribution is the state machine: creator publication → named contributor's exact-hash acceptance → participant-only scope request → independently validated classification with original clause references. Hash provenance, duplicate protection, mutual permissions and immutable versions are enforced by the new Intelligent Contract.
 
-Reused engineering: selected ClaimLens wallet utilities, endpoint separation, fee review, durable transaction hashes, lifecycle/result provenance checks, and legacy-runtime tooling. Reused infrastructure is disclosed; ClaimLens's branding, claim rubric, database, private drafts, source discovery and historical outcomes are not ScopeLock features or evidence.
+Reused engineering: selected ClaimLens wallet utilities, endpoint separation, fee review, durable transaction hashes, lifecycle/result provenance checks, and legacy-runtime tooling. Reused infrastructure is disclosed; ClaimLens's branding, claim rubric, database, private drafts, source discovery and historical outcomes are not ClausePact features or evidence.
 
 The [Builder Program announcement](https://talks.genlayer.foundation/t/introducing-genlayers-incentivized-builders-program/20) describes novelty, complexity and impact as review factors. Only stewards decide acceptance and duplicate treatment. No portal submission has been made by this implementation.
 

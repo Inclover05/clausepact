@@ -48,5 +48,18 @@
     "publicAgreement": "e98d57ef-2fc5-4903-ab9f-7d36df8c5084",
     "publicRuling": "b5cd47b0-0df0-4053-b589-450a38ede361",
     "consoleErrors": []
+  },
+  "releaseRecheck": {
+    "checkedAt": "2026-10-18T08:00:45.843Z",
+    "productionCommit": "1e77a38277fb9521afd5f1adc15127bd73640141",
+    "desktopScreenshot": "screenshots/release-purple.jpg",
+    "mobileScreenshot": "screenshots/release-mobile-purple.jpg",
+    "rulingLoadedWithConsensusProof": true,
+    "creationNavigationFromRuling": true,
+    "demoHTTPStatus": 200,
+    "demoBytes": 628261,
+    "inboxHTTPStatus": 200,
+    "namedContributorAgreementPresent": true,
+    "browserWalletSigning": "unverified: no extension installed"
   }
 }

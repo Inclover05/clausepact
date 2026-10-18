@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-18T07:58:42.484Z",
+  "checkedAt": "2026-10-18T08:01:15.479Z",
   "base": "https://clausepact-inclover05s-projects.vercel.app",
   "contract": "0x96F604f62Dcc0957e3ea8554779EB4B5BE4bfae3",
   "chainWritesSent": false,
@@ -56,7 +56,7 @@
       "ok": true,
       "evidence": {
         "maximumFeeGEN": "0.00020691215058555",
-        "expiresAt": 1792310627
+        "expiresAt": 1792310779
       }
     },
     {
@@ -199,5 +199,5 @@
     }
   ],
   "ok": true,
-  "completedAt": "2026-10-18T07:59:30.656Z"
+  "completedAt": "2026-10-18T08:02:04.226Z"
 }
