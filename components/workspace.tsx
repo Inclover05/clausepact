@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import {useCallback,useEffect,useRef,useState} from 'react';
 import {ArrowUpRight,ArrowRight,Plus,LockKeyhole,Layers3,Wallet,Check,FileText,Inbox,ShieldCheck,RefreshCw,X,ChevronRight,Scale,Copy,ExternalLink} from 'lucide-react';
-import {POLICY,LABELS,ADDRESS,HASH,canSend} from '@/lib/core.mjs';
+import {POLICY,LABELS,ADDRESS,HASH,canSend,parsePending} from '@/lib/core.mjs';
 import {switchToBradbury,walletErrorCode,type Provider,type WalletChoice} from '@/lib/wallet';
 import type {Action,Agreement,Ruling,Pending,Quote} from '@/lib/types';
 const PENDING='scopelock:pending:v1',DRAFT='scopelock:draft:v1';
@@ -20,10 +20,12 @@ export default function Workspace({agreementId,rulingId}:{agreementId?:string;ru
  const [title,setTitle]=useState(''),[contributor,setContributor]=useState(''),[clauses,setClauses]=useState(['']),[request,setRequest]=useState(''),[disclose,setDisclose]=useState(false);
  const [pending,setPending]=useState<Pending|null>(null),[quote,setQuote]=useState<Quote|null>(null),[action,setAction]=useState<Action|null>(null),[recovery,setRecovery]=useState('');
  const [error,setError]=useState(''),[notice,setNotice]=useState(''),[busy,setBusy]=useState(false),[loading,setLoading]=useState(false),[draftReady,setDraftReady]=useState(false);
+ const [storageBlocked,setStorageBlocked]=useState(false);
  const feeDialog=useRef<HTMLDialogElement>(null),walletDialog=useRef<HTMLDialogElement>(null),sending=useRef(false),tracking=useRef(false);
  const savePending=useCallback((value:Pending|null)=>{if(value)store(PENDING,value);else localStorage.removeItem(PENDING);setPending(value);},[]);
  useEffect(()=>{
-  try{const saved=localStorage.getItem(PENDING);if(saved)setPending(JSON.parse(saved));const draft=JSON.parse(localStorage.getItem(DRAFT)||'null');if(draft){setTitle(draft.title||'');setContributor(draft.contributor||'');if(Array.isArray(draft.clauses)&&draft.clauses.length)setClauses(draft.clauses.slice(0,12));}}catch{setError('Browser storage could not be restored. Check wallet activity before submitting.');}
+  try{setPending(parsePending(localStorage.getItem(PENDING)));}catch{setStorageBlocked(true);setError('Saved transaction could not be restored. Inspect wallet activity and preserve any hash before repairing browser storage. Submissions are locked.');}
+  try{const draft=JSON.parse(localStorage.getItem(DRAFT)||'null');if(draft){setTitle(typeof draft.title==='string'?draft.title:'');setContributor(typeof draft.contributor==='string'?draft.contributor:'');if(Array.isArray(draft.clauses)&&draft.clauses.length&&draft.clauses.every((x:unknown)=>typeof x==='string'))setClauses(draft.clauses.slice(0,12));}}catch{setNotice('The unfinished brief could not be restored.');}
   setDraftReady(true);
   api('?kind=config').then(value=>{setContract(value.contract);setExamples(value.examples||{agreementId:null,rulings:[]});setConfigReady(true);}).catch(e=>setError(e.message));
   const announce=(event:Event)=>{const detail=(event as CustomEvent<WalletChoice>).detail;if(detail?.info?.rdns&&typeof detail.provider?.request==='function')setWallets(previous=>previous.some(x=>x.info.uuid===detail.info.uuid)?previous:[...previous,detail]);};
@@ -33,7 +35,7 @@ export default function Workspace({agreementId,rulingId}:{agreementId?:string;ru
   return ()=>window.removeEventListener('eip6963:announceProvider',announce);
  },[]);
  useEffect(()=>{if(draftReady)try{store(DRAFT,{title,contributor,clauses});}catch{setError('Draft could not be saved in this browser.');}},[title,contributor,clauses,draftReady]);
- useEffect(()=>{const changed=(event:StorageEvent)=>{if(event.key!==PENDING)return;try{setPending(event.newValue?JSON.parse(event.newValue):null);feeDialog.current?.close();}catch{setError('Another tab changed the saved transaction. Reload and inspect wallet activity.');}};window.addEventListener('storage',changed);return()=>window.removeEventListener('storage',changed);},[]);
+ useEffect(()=>{const changed=(event:StorageEvent)=>{if(event.key!==PENDING)return;try{setPending(parsePending(event.newValue));setStorageBlocked(false);feeDialog.current?.close();}catch{setStorageBlocked(true);setError('Another tab damaged the saved transaction. Reload and inspect wallet activity.');}};window.addEventListener('storage',changed);return()=>window.removeEventListener('storage',changed);},[]);
  useEffect(()=>{if(!wallet)return;const changed=()=>{setAccount('');setWallet(null);setQuote(null);feeDialog.current?.close();setNotice('Your wallet account or network changed. Reconnect to continue.');};wallet.provider.on?.('accountsChanged',changed);return()=>wallet.provider.removeListener?.('accountsChanged',changed);},[wallet]);
  const load=useCallback(async()=>{
   if(!contract)return;setLoading(true);
@@ -56,14 +58,14 @@ export default function Workspace({agreementId,rulingId}:{agreementId?:string;ru
  useEffect(()=>{if(!pending?.hash||['finalized','execution_failed','no_consensus'].includes(pending.state))return;void refreshRef.current();const timer=setInterval(()=>void refreshRef.current(),15000);const visible=()=>{if(!document.hidden)void refreshRef.current();};document.addEventListener('visibilitychange',visible);return()=>{clearInterval(timer);document.removeEventListener('visibilitychange',visible);};},[pending?.hash,pending?.state]);
  async function connect(choice:WalletChoice){setError('');try{const values=await choice.provider.request({method:'eth_requestAccounts'});if(!Array.isArray(values)||!ADDRESS.test(values[0]))throw Error('No valid wallet account.');setWallet(choice);setAccount(values[0].toLowerCase());walletDialog.current?.close();}catch(e){setError(e instanceof Error?e.message:'Wallet connection failed.');}}
  async function review(next:Action){
-  setError('');setNotice('');if(!canSend(pending)){setError('Resolve the saved transaction before starting another one.');return;}if(!wallet){walletDialog.current?.showModal();return;}setBusy(true);
+  setError('');setNotice('');if(storageBlocked||!canSend(pending)){setError('Resolve the saved transaction before starting another one.');return;}if(!wallet){walletDialog.current?.showModal();return;}setBusy(true);
   try{await switchToBradbury(wallet.provider,account);const value=await api('',{kind:'quote',action:next});setAction(next);setQuote(value);feeDialog.current?.showModal();}catch(e){setError(e instanceof Error?e.message:'Fee estimate failed.');}finally{setBusy(false);}
  }
  async function send(){
   if(!navigator.locks){setError('Use a current browser with Web Locks support to submit safely across tabs.');return;}
   await navigator.locks.request('scopelock:wallet-submission',{ifAvailable:true},async lock=>{
    if(!lock){setError('Another ScopeLock tab is submitting. Wait and check the saved transaction.');return;}
-   try{const saved=JSON.parse(localStorage.getItem(PENDING)||'null');if(!canSend(saved)){setPending(saved);feeDialog.current?.close();setError('An existing transaction needs to be resolved before another submission.');return;}}catch{setError('Saved transaction data cannot be read. Inspect wallet activity before continuing.');return;}
+   try{const saved=parsePending(localStorage.getItem(PENDING));if(!canSend(saved)){setPending(saved);feeDialog.current?.close();setError('An existing transaction needs to be resolved before another submission.');return;}}catch{setStorageBlocked(true);feeDialog.current?.close();setError('Saved transaction data cannot be read. Inspect wallet activity before continuing.');return;}
    await signAndSend();
   });
  }
@@ -78,6 +80,7 @@ export default function Workspace({agreementId,rulingId}:{agreementId?:string;ru
    if(typeof hash!=='string'||!HASH.test(hash))throw Error('Wallet returned no valid transaction hash.');
    saved={...saved,hash,state:'pending'};savePending(saved);feeDialog.current?.close();setQuote(null);setNotice('Transaction saved. Tracking continues here; no automatic resubmission.');
   }catch(e){
+   feeDialog.current?.close();setQuote(null);
    if(saved&&walletErrorCode(e)===4001){savePending({...saved,state:'rejected'});setError('You declined the wallet request.');}
    else if(saved){setPending(saved);setError(saved.hash?`Transaction hash: ${saved.hash}. Keep this hash and restore it below.`:'Wallet outcome uncertain. Inspect wallet activity and attach the existing hash below.');}
    else setError(e instanceof Error?e.message:'Wallet request failed.');
@@ -86,7 +89,7 @@ export default function Workspace({agreementId,rulingId}:{agreementId?:string;ru
  async function moreAgreements(){if(!account)return;setLoading(true);try{const value=await api(`?kind=inbox&id=${account}&offset=${records.length}`);setRecords(previous=>[...previous,...value.records.filter((item:Agreement)=>!previous.some(x=>x.id===item.id))]);setTotal(value.total);}catch(e){setError(e instanceof Error?e.message:'Could not load more agreements.');}finally{setLoading(false);}}
  function createBrief(event:React.FormEvent){event.preventDefault();if(!account){walletDialog.current?.showModal();return;}if(!disclose){setError('Acknowledge public on-chain storage before publishing.');return;}const data={id:crypto.randomUUID(),policy:POLICY,creator:account,contributor:contributor.trim().toLowerCase(),title:title.trim(),requirements:clauses.map(x=>x.trim())};void review({contract,from:account,method:'create_agreement',args:[JSON.stringify(data)]});}
  function ask(event:React.FormEvent){event.preventDefault();if(!brief)return;if(!disclose){setError('Acknowledge public on-chain storage before requesting a ruling.');return;}const data={id:crypto.randomUUID(),policy:POLICY,sender:account,agreement_id:brief.id,agreement_hash:brief.agreement_hash,request:request.trim()};void review({contract,from:account,method:'request_ruling',args:[JSON.stringify(data)]});}
- const locked=busy||!contract||!canSend(pending);
+ const locked=busy||!contract||storageBlocked||!canSend(pending);
  const currentId=pending?(pending.action.method==='accept_agreement'?pending.action.args[0]:JSON.parse(pending.action.args[0]).id):'';
  const inbox=records.filter(x=>!x.accepted&&x.contributor===account);
  const showDashboard=!agreementId&&!rulingId;

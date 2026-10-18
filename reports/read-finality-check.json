@@ -1,0 +1,102 @@
+{
+  "checkedAt": "2026-10-18T02:21:25.341Z",
+  "contract": "0x96F604f62Dcc0957e3ea8554779EB4B5BE4bfae3",
+  "results": [
+    {
+      "requestedStatus": "accepted",
+      "response": {
+        "jsonrpc": "2.0",
+        "result": {
+          "data": "940173636f70656c6f636b2d73636f70652d7631",
+          "eqOutputs": [],
+          "status": {
+            "code": 0,
+            "message": "success"
+          },
+          "stdout": "",
+          "stderr": "",
+          "logs": [
+            {
+              "file": "common/src/lib.rs:111",
+              "level": "info",
+              "message": "logging initialized",
+              "target": "genvm_common",
+              "ts": "1792290083659",
+              "version": "v0.2.11-x86_64-linux-release"
+            },
+            {
+              "file": "src/exe/run.rs:150",
+              "genvm_id": "5363103",
+              "level": "info",
+              "message": "genvm id",
+              "target": "genvm::exe::run",
+              "ts": "1792290083660"
+            },
+            {
+              "default": "v0.1.0",
+              "file": "src/runners/parse.rs:88",
+              "level": "warn",
+              "message": "runner comment does not start with version, using default",
+              "target": "genvm::runners::parse",
+              "ts": "1792290083663"
+            },
+            {
+              "file": "src/lib.rs:299",
+              "level": "info",
+              "message": "metrics",
+              "metrics": {
+                "gvm": {
+                  "host": {
+                    "time": 912
+                  },
+                  "llm_module": {
+                    "calls": 0,
+                    "time": 0
+                  },
+                  "supervisor": {
+                    "compilation_time": 0,
+                    "compiled_modules": 0,
+                    "precompile_hits": 2
+                  },
+                  "web_module": {
+                    "calls": 0,
+                    "time": 0
+                  }
+                },
+                "llm": null,
+                "web": null
+              },
+              "target": "genvm",
+              "ts": "1792290083834"
+            },
+            {
+              "file": "src/exe/run.rs:111",
+              "level": "warn",
+              "message": "sigterm received",
+              "target": "genvm::exe::run",
+              "ts": "1792290083835"
+            }
+          ],
+          "events": [],
+          "messages": [],
+          "nondetDisagreementCallNo": null,
+          "syncedBlock": "0x183e9d8"
+        },
+        "id": 1
+      }
+    },
+    {
+      "requestedStatus": "finalized",
+      "response": {
+        "jsonrpc": "2.0",
+        "result": null,
+        "error": {
+          "code": -32001,
+          "message": "contract not found at address 0x96F604f62Dcc0957e3ea8554779EB4B5BE4bfae3",
+          "data": ""
+        },
+        "id": 1
+      }
+    }
+  ]
+}

@@ -21,7 +21,7 @@ export async function rpc(method:string,params:unknown[]){
 }
 export async function read(method:string,args:string[],final=true):Promise<string>{
  const contract=configured();if(!ADDRESS.test(contract))throw Error('The ScopeLock contract is not configured.');
- const raw=await rpc('gen_call',[{type:'read',to:contract,from:'0x0000000000000000000000000000000000000001',data:calldata(method,args),transaction_hash_variant:final?'latest-final':'latest-nonfinal'}]);
+ const raw=await rpc('gen_call',[{type:'read',to:contract,from:'0x0000000000000000000000000000000000000001',data:calldata(method,args),status:final?'finalized':'accepted',transaction_hash_variant:final?'latest-final':'latest-nonfinal'}]);
  if(typeof raw!=='string'&&raw.status?.code!==undefined&&raw.status.code!==0)throw Error('Contract read failed.');
  const hex=typeof raw==='string'?raw:raw.data;if(typeof hex!=='string')throw Error('Invalid contract response.');
  return String(abi.calldata.decode(fromHex((hex.startsWith('0x')?hex:`0x${hex}`) as Hex,'bytes')));

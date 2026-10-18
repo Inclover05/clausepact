@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {POLICY,validateBrief,lifecycle,canSend,rulingMatches} from '../lib/core.mjs';
+import {POLICY,validateBrief,lifecycle,canSend,parsePending,rulingMatches} from '../lib/core.mjs';
 const creator='0x'+'a'.repeat(40),contributor='0x'+'b'.repeat(40);
 const brief={id:'11111111-1111-1111-1111-111111111111',policy:POLICY,creator,contributor,title:'Portfolio',requirements:['One home page']};
 test('brief validation enforces distinct wallets and bounded requirements',()=>{
@@ -26,4 +26,11 @@ test('result provenance requires the exact submitted request, sender and agreeme
  assert.equal(rulingMatches(record,data,'x'),true);
  for(const field of ['id','agreement_id','agreement_hash','sender','request'])assert.equal(rulingMatches({...record,[field]:'other'},data,'x'),false);
  assert.equal(rulingMatches(record,data,'different-hash'),false);
+});
+test('damaged pending records fail closed instead of losing the repayment lock',()=>{
+ assert.equal(parsePending(null),null);assert.throws(()=>parsePending('{'));
+ assert.throws(()=>parsePending(JSON.stringify({state:'pending',action:{method:'request_ruling',args:['{}'],contract:creator,from:creator}})));
+ const record={state:'uncertain',action:{contract:contributor,from:creator,method:'create_agreement',args:[JSON.stringify(brief)]}};
+ assert.equal(parsePending(JSON.stringify(record)).state,'uncertain');
+ assert.throws(()=>parsePending(JSON.stringify({...record,hash:'not-a-hash'})));
 });

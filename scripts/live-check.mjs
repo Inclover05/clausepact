@@ -23,7 +23,7 @@ let report;try{report=JSON.parse(await readFile('reports/live-verification.json'
 if(report.contract!==contract)throw Error('Existing report targets a different contract.');
 const save=()=>writeFile('reports/live-verification.json',json(report));
 async function read(method,args,final=false){
- const response=await fetch('https://rpc-bradbury.genlayer.com',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({jsonrpc:'2.0',id:1,method:'gen_call',params:[{type:'read',from:creator.address,to:contract,data:encode(method,args),transaction_hash_variant:final?'latest-final':'latest-nonfinal'}]}),signal:AbortSignal.timeout(20000)});
+ const response=await fetch('https://rpc-bradbury.genlayer.com',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({jsonrpc:'2.0',id:1,method:'gen_call',params:[{type:'read',from:creator.address,to:contract,data:encode(method,args),status:final?'finalized':'accepted',transaction_hash_variant:final?'latest-final':'latest-nonfinal'}]}),signal:AbortSignal.timeout(20000)});
  const data=await response.json();if(data.error)throw Error('Contract read failed.');const raw=typeof data.result==='string'?data.result:data.result.data;return String(abi.calldata.decode(fromHex(raw.startsWith('0x')?raw:`0x${raw}`,'bytes')));
 }
 async function submit(name,account,to,data,value=0n,metadata={}){
