@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { agreement, ruling, read, quote, track, configured } from '@/lib/chain';
 import { ADDRESS, ID, POLICY } from '@/lib/core.mjs';
+import examples from '@/public/examples.json';
 export const dynamic='force-dynamic';
 export async function GET(request:NextRequest){
  try{
   const params=request.nextUrl.searchParams;const kind=params.get('kind');const id=params.get('id')||'';
-  if(kind==='config')return NextResponse.json({contract:configured(),policy:POLICY,chainId:4221});
+  if(kind==='config')return NextResponse.json({contract:configured(),policy:POLICY,chainId:4221,examples});
   if(kind==='agreement')return NextResponse.json({record:await agreement(id),requestIds:JSON.parse(await read('get_requests',[id]))});
   if(kind==='ruling')return NextResponse.json({record:await ruling(id)});
   if(kind==='inbox'){

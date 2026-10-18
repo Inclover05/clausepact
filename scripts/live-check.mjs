@@ -9,7 +9,7 @@ import {loadBradburyTestAccount as contributorSigner} from './test-wallet.mjs';
 import {POLICY,lifecycle} from '../lib/core.mjs';
 const {loadBradburyTestAccount}=await import(process.env.SCOPELOCK_SIGNER_MODULE||'./test-wallet.mjs');
 const creator=await loadBradburyTestAccount(),contributor=await contributorSigner();
-const deployment=JSON.parse(await readFile('.wallet/deployment-scopelock-v1.json','utf8'));
+const deployment=JSON.parse(await readFile('.wallet/deployment-rubric-v2.json','utf8'));
 const contract=deployment.contractAddress;
 if(!contract||creator.address.toLowerCase()===contributor.address.toLowerCase())throw Error('Verified deployment and two different wallets are required.');
 const chain={...testnetBradbury,rpcUrls:{default:{http:['https://rpc.testnet-chain.genlayer.com']}}};
@@ -39,6 +39,7 @@ async function call(name,account,method,args){
  return submit(name,account,consensus.address,encodeFunctionData({abi:consensus.abi,functionName:'addTransaction',args:[account.address,contract,5n,3n,encode(method,args),BigInt(Math.floor(Date.now()/1000)+3600)]}),0n,{method,args});
 }
 async function status(op){
+ if(op.externalFunding)return;
  if(!op.evmHash)throw Error('Interrupted signing attempt requires manual inspection.');
  let receipt;try{receipt=await evm.getTransactionReceipt({hash:op.evmHash});}catch{return;}
  op.networkFeeGEN=formatEther(receipt.gasUsed*receipt.effectiveGasPrice);
@@ -56,7 +57,7 @@ try{
  if(await evm.getChainId()!==4221)throw Error('Wrong test network.');
  const source=await gen.getContractCode(contract);if(sha(source)!==deployment.sourceSha256||await read('get_policy',[])!==POLICY)throw Error('Deployed source or policy mismatch.');report.sourceAndPolicyVerified=true;
  for(const op of Object.values(report.operations))await status(op);
- if(!report.operations.funding){await submit('funding',creator,contributor.address,'0x',parseEther('0.03'));}
+ if(!report.operations.funding){const balance=await evm.getBalance({address:contributor.address});if(balance>=parseEther('0.01'))report.operations.funding={name:'funding',state:'finalized',externalFunding:true,existingBalanceGEN:formatEther(balance)};else await submit('funding',creator,contributor.address,'0x',parseEther('0.03'));}
  else if(!report.operations.publish){const payload=JSON.stringify({id:report.agreementId,policy:POLICY,creator:report.creator,contributor:report.contributor,title:'ScopeLock public test — portfolio brief',requirements:['Build exactly three pages: Home, About and Contact. An online store, checkout and payment integration are excluded.','The pages must work on mobile and desktop. Use a font selected by the contributor unless the creator supplies a preferred font.','The Contact page must display the creator-supplied email address as a clickable mailto link. No forms or backend services are included.']});await call('publish',creator,'create_agreement',[payload]);}
  else if(['provisional','finalized'].includes(report.operations.publish.state)&&!report.operations.accept){await call('accept',contributor,'accept_agreement',[report.agreementId,report.operations.publish.record.agreement_hash]);}
  else if(['provisional','finalized'].includes(report.operations.accept?.state)){

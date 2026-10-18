@@ -40,9 +40,12 @@ def request(case,record,text='Build an ecommerce checkout.'):
     vm,_,owner,_,_=case;vm.sender=owner
     return json.dumps({'id':RID,'agreement_id':ID,'agreement_hash':record['agreement_hash'],'policy':POLICY,'sender':str(owner).lower(),'request':text})
 
+BASIS={'Already required':'RESTATES_OBLIGATION','Clarification':'FILLS_OPEN_DETAIL','Additional scope':'ADDS_OBLIGATION','Ambiguous':'MIXED_OR_UNCLEAR'}
+
 def mocks(vm,label='Additional scope',ids=None,valid=True,independent=None):
-    vm.mock_llm('^Classify the scope request',json.dumps({'classification':label,'explanation':'The original brief only covers portfolio pages, whereas checkout adds a distinct deliverable.','clause_ids':[1] if ids is None else ids,'limitations':'Only the agreed text is assessed.'}))
-    vm.mock_llm('^Independently classify',json.dumps({'independent_classification':independent or label,'valid':valid,'reason':'The classification and relevant requirement references follow the agreed rubric.'}))
+    vm.mock_llm('^Classify the scope request',json.dumps({'basis':BASIS[label],'explanation':'The original brief only covers portfolio pages, whereas checkout adds a distinct deliverable.','clause_ids':[1] if ids is None else ids,'limitations':'Only the agreed text is assessed.'}))
+    vm.mock_llm('^Independently classify',json.dumps({'basis':BASIS[independent or label],'explanation':'Independent reasoning derived from the frozen requirements without seeing the proposed answer.','clause_ids':[1] if ids is None else ids,'limitations':''}))
+    vm.mock_llm('^Audit the proposed',json.dumps({'assessment':'GROUNDED' if valid else 'UNGROUNDED','reason':'The basis, explanation and clause references follow the agreed rubric.'}))
 
 def test_publication_freezes_hash_and_indexes_both_wallets(case):
     payload,record=publish(case);vm,c,owner,contributor,_=case

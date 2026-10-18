@@ -12,15 +12,16 @@ This report is updated as checks complete. Machine-readable evidence in this fol
 
 ## Live evidence
 
-- Dedicated contract: `0xD9518Ccbc2093490c148095676aD79931b61DcC3`.
-- Source SHA-256: `a54af1f46dcaee3ce719276b01c68991b6ca3afd369df0f122a0a4dfeb5438f2`.
-- Deployment EVM transaction: `0x9f214913864edd0266bc6b3049f4536cfde19c63cd3af259dc4e9116ada699f2`.
-- Deployment GenLayer ID: `0xe628886649be2b026e9e568a44e40afec63cb46a702b70f41ff7df822113bfbe`.
+- Dedicated contract: `0x96F604f62Dcc0957e3ea8554779EB4B5BE4bfae3`.
+- Source SHA-256: `cbde5e3606211624b082bbe0632cf7d9021354136068f0caff9c9f12ff5f6604`.
+- Deployment EVM transaction: `0x981c04d7f2738150fc4f6bc6c462c4778fef277c509dc144fc70edce414cb2f3`.
+- Deployment GenLayer ID: `0x46b2982585eacbdff8e1d43dbda3970fe0905fca1b000259d0d3d4240a02db76`.
 - Exact source and policy read-back passed against the new contract. Initial observed state: Accepted, AGREE, FINISHED_WITH_RETURN; this is provisional until protocol finality.
-- Initial measured deployment network fee: `0.001560425559333` test GEN.
+- Initial measured deployment network fee: `0.0018246523125` test GEN.
 - Public Vercel deployment reached READY with anonymous access. Browser inspection confirmed the overview, creation form, public-storage notice and numbered requirements.
 - Real creator/contributor agreement and classification checks are recorded in `live-verification.json`. Their status is not implied by the deployed address.
 
 ## Verification still in progress
 
 Protocol finality, full live classification results, finalized API read-back, responsive/browser checks, demo capture and final source publication will be recorded here as completed. Real browser-extension wallet signing is a separate check from encrypted local test-signers; do not treat one as proof of the other.
+

@@ -6,7 +6,7 @@ Two wallets agree on a frozen bounty brief. When a later request arrives, GenLay
 - Source: https://github.com/Inclover05/scopelock
 - Network: GenLayer Bradbury, chain ID 4221 (test GEN only)
 - Policy: `scopelock-scope-v1`
-- Contract: `0xD9518Ccbc2093490c148095676aD79931b61DcC3`
+- Contract: `0x96F604f62Dcc0957e3ea8554779EB4B5BE4bfae3`
 
 Read [release evidence](reports/verification.md) for actual deployment, execution, consensus and finality states. A deployed address or an Accepted transaction is not proof of a finalized successful ruling.
 
@@ -54,3 +54,4 @@ English text only. All on-chain text and addresses are public. The app assesses 
 - [Ecosystem comparison](docs/differentiation.md)
 
 ClaimLens supplied selected integration patterns for wallet identity, EVM/GenLayer endpoint separation, fee review, immutable provenance and uncertain-broadcast recovery. ScopeLock has a new contract, policy, workflow, repository and deployment. No prior project's historical verdicts, deployment or acceptance are used as ScopeLock evidence.
+
