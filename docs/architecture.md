@@ -48,3 +48,4 @@ Fee estimates expire after five minutes. Accounts and network are rechecked imme
 
 Tracking verifies the EVM input before trusting its GenLayer event. Accepted plus successful execution and agreement is provisional; only successful finalized consensus with matching read-back is finalized. `AGREE` and `MAJORITY_AGREE` are both recognized. A finalized error or disagreement is not a ruling. The browser polls every 15 seconds while visible and never sends an automatic retry. Consensus-stage timeouts remain pending protocol recovery, not an invented verdict. Public record pages use the RPC status filter `finalized` as well as the legacy read variant; testing showed the legacy variant alone returned accepted state.
 
+

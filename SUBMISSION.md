@@ -1,14 +1,14 @@
-# ScopeLock — Builder Portal submission draft
+# ClausePact — Builder Portal submission draft
 
-**Website:** https://scopelock-inclover05s-projects.vercel.app  
-**Source:** https://github.com/Inclover05/scopelock  
+**Website:** https://clausepact-inclover05s-projects.vercel.app  
+**Source:** https://github.com/Inclover05/clausepact  
 **Network:** GenLayer Bradbury testnet, chain ID 4221  
 **Intelligent Contract:** `0x96F604f62Dcc0957e3ea8554779EB4B5BE4bfae3`  
 **Policy:** `scopelock-scope-v1`
 
 ## Description
 
-ScopeLock resolves a common disagreement in bounty work: does “one more thing” belong to the original brief? A creator publishes numbered requirements, a named contributor accepts their exact hash, and either participant can submit a later work request. GenLayer classifies it as Already required, Clarification, Additional scope or Ambiguous, with original-clause references and a grounded explanation.
+ClausePact resolves a common disagreement in bounty work: does “one more thing” belong to the original brief? A creator publishes numbered requirements, a named contributor accepts their exact hash, and either participant can submit a later work request. GenLayer classifies it as Already required, Clarification, Additional scope or Ambiguous, with original-clause references and a grounded explanation.
 
 ## Why GenLayer is necessary
 
@@ -30,4 +30,5 @@ This is a scope-change workflow, rather than factual verification, code review o
 The release report distinguishes controlled fixtures, actual contract transactions, browser checks, API read-back, and unresolved checks. All on-chain text is public. Results interpret submitted wording and do not authenticate who originally made the request, establish legal obligations or verify delivery. Fees and completion time are not guarantees of a result.
 
 The repository includes source, tests, deployment/recovery tooling, architecture, operating limits and dated verification evidence. Portal review and duplicate treatment remain the stewards' decision. **This is prepared submission material, not confirmation of a submitted or accepted contribution.**
+
 

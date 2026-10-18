@@ -1,9 +1,11 @@
-# ScopeLock
+# ClausePact
+
+Public branding changed from the draft name ScopeLock after discovering an unrelated GenLayer project with that name. The deployed class `ScopeLock`, policy `scopelock-scope-v1`, source filenames and workspace folder remain technical identifiers so the verified source and transaction history stay intact.
 
 Two wallets agree on a frozen bounty brief. When a later request arrives, GenLayer evaluates whether it is **Already required**, a **Clarification**, **Additional scope**, or **Ambiguous**, with references to the original requirements.
 
-- Website: https://scopelock-inclover05s-projects.vercel.app
-- Source: https://github.com/Inclover05/scopelock
+- Website: https://clausepact-inclover05s-projects.vercel.app
+- Source: https://github.com/Inclover05/clausepact
 - Network: GenLayer Bradbury, chain ID 4221 (test GEN only)
 - Policy: `scopelock-scope-v1`
 - Contract: `0x96F604f62Dcc0957e3ea8554779EB4B5BE4bfae3`
@@ -53,5 +55,6 @@ English text only. All on-chain text and addresses are public. The app assesses 
 - [Deployment and recovery](DEPLOYMENT.md)
 - [Ecosystem comparison](docs/differentiation.md)
 
-ClaimLens supplied selected integration patterns for wallet identity, EVM/GenLayer endpoint separation, fee review, immutable provenance and uncertain-broadcast recovery. ScopeLock has a new contract, policy, workflow, repository and deployment. No prior project's historical verdicts, deployment or acceptance are used as ScopeLock evidence.
+ClaimLens supplied selected integration patterns for wallet identity, EVM/GenLayer endpoint separation, fee review, immutable provenance and uncertain-broadcast recovery. ClausePact has a new contract, policy, workflow, repository and deployment. No prior project's historical verdicts, deployment or acceptance are used as ClausePact evidence.
+
 

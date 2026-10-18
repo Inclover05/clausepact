@@ -92,6 +92,8 @@
       }
     }
   ],
-  "ok": true,
-  "completedAt": "2026-10-18T02:20:23.384Z"
+  "ok": false,
+  "completedAt": "2026-10-18T02:20:23.384Z",
+  "superseded": true,
+  "note": "Initial legacy-variant-only reads did not establish finality. This report is superseded by the explicit status-filter fix and requires rerunning the final live API gate."
 }

@@ -1,0 +1,40 @@
+{
+  "checkedAt": "2026-10-18T02:27:40.585Z",
+  "scope": "Public in-app browser checks; no browser wallet extension is installed.",
+  "checks": [
+    {
+      "name": "Overview and composer render",
+      "ok": true
+    },
+    {
+      "name": "Two-clause draft survives reload",
+      "ok": true
+    },
+    {
+      "name": "Twelve requirements maximum and 500-character textarea bounds",
+      "ok": true
+    },
+    {
+      "name": "Removal preserves remaining clause contents",
+      "ok": true
+    },
+    {
+      "name": "390px mobile layout without horizontal overflow",
+      "ok": true
+    },
+    {
+      "name": "Native wallet dialog and provider-missing state",
+      "ok": true
+    },
+    {
+      "name": "Browser error/warning logs during inspected flow",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "name": "Real browser wallet signing, rejection and uncertain broadcast UI",
+      "ok": null,
+      "reason": "No extension wallet in the test browser. Encrypted local signers and provider fixtures are separate evidence."
+    }
+  ]
+}

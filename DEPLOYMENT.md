@@ -1,6 +1,6 @@
 # Deployment and recovery
 
-Independent Vercel project: `scopelock`, ID `prj_Hr6FgRI1Yuc3CDRVd6yS46ybUqmH`, team `inclover05s-projects`. Its public production URL is https://scopelock-inclover05s-projects.vercel.app. No ClaimLens hosting configuration or secrets are copied.
+Independent Vercel project: `scopelock`, ID `prj_Hr6FgRI1Yuc3CDRVd6yS46ybUqmH`, team `inclover05s-projects`. Its public production URL is https://clausepact-inclover05s-projects.vercel.app. No ClaimLens hosting configuration or secrets are copied.
 
 The only application environment variable is `NEXT_PUBLIC_SCOPELOCK_CONTRACT`, set to the dedicated verified Bradbury address. It is public configuration. After changing it, build a new deployment. Never add signer keys to hosting settings.
 
@@ -28,3 +28,4 @@ The network may require an explicit `finalizeTransaction` after its appeal windo
 ## Source publication
 
 `scripts/publish-github.mjs` uses Git Credential Manager in memory to create or update only the authenticated user's `scopelock` repository, refuses an unexpected origin, and never logs credentials. The initial publication and later updates must exclude `.wallet`, `.env*`, build outputs and caches. Deploy the intended `main` commit through Vercel after checks pass.
+

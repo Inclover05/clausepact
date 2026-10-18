@@ -10,10 +10,12 @@
 - Each ruling references the brief and request hashes. Duplicate successful requests with the same trimmed text in one agreement are rejected; differently worded or failed requests can be submitted only through a new, explicitly approved transaction.
 - Accepted is provisional and may change through protocol appeals. Finality is asynchronous and has no application-level deadline. The site does not invent finality from a timer.
 - Public agreement/ruling pages and the acceptance inbox use finalized state. Wait for publication finality before accepting in the UI, and acceptance finality before requesting a ruling. This is slower than the sequential nonfinal contract checks used in the test ledger.
-- The estimate is the pinned Bradbury EVM transaction maximum at the quoted gas limit and price. It is not v0.6 execution profiling, a guaranteed total across protocol versions, or a guarantee of a ruling. An unsuccessful transaction can cost test GEN. ScopeLock charges no application fee.
+- The estimate is the pinned Bradbury EVM transaction maximum at the quoted gas limit and price. It is not v0.6 execution profiling, a guaranteed total across protocol versions, or a guarantee of a ruling. An unsuccessful transaction can cost test GEN. ClausePact charges no application fee.
 - An uncertain wallet response retains the submission lock. Attach the existing EVM hash after checking wallet activity. Clearing browser storage or changing origin loses local recovery data; preserve your hash externally. No automatic rebroadcast occurs.
 - Wallet account selection is held in memory; reconnect after a full reload. The draft and transaction are restored separately. Modern browsers with Web Locks and an EVM wallet are required for submission.
 - Wallet agreement indexes and per-agreement ruling lists grow on-chain; no throughput or large-index benchmarks have been performed. The API paginates inbox results; v1 is intended for modest testnet use.
+- This deployment shares one contract execution queue. A consensus-stage timeout can delay later requests, including unrelated agreements, until protocol recovery; creating a second payment for the same request does not repair that queue.
 - Protocol appeals remain accessible through GenLayer tooling during the appeal window; the v1 website does not include an appeal transaction composer.
 - Test fixtures are not live model or committee evidence. Refer to the release ledger for observed live states. Portal acceptance and uniqueness are not guaranteed.
+
 
