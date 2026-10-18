@@ -1,1 +1,23 @@
-{"agreementId":null,"rulings":[],"checkedAt":null}
+{
+  "agreementId": "e98d57ef-2fc5-4903-ab9f-7d36df8c5084",
+  "contract": "0x96F604f62Dcc0957e3ea8554779EB4B5BE4bfae3",
+  "sourceSha256": "cbde5e3606211624b082bbe0632cf7d9021354136068f0caff9c9f12ff5f6604",
+  "checkedAt": "2026-10-18T07:45:19.930Z",
+  "rulings": [
+    {
+      "id": "ceeec110-5590-462b-906d-585b9ec688fa",
+      "classification": "Already required",
+      "title": "The email link already in the brief"
+    },
+    {
+      "id": "b5cd47b0-0df0-4053-b589-450a38ede361",
+      "classification": "Additional scope",
+      "title": "An online store beyond the brief"
+    },
+    {
+      "id": "f341a798-f371-4a23-b905-2dbdd2cfe5a2",
+      "classification": "Ambiguous",
+      "title": "One request with mixed obligations"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
-  "checkedAt": "2026-10-18T02:20:07.634Z",
-  "base": "https://scopelock-inclover05s-projects.vercel.app",
+  "checkedAt": "2026-10-18T07:52:10.956Z",
+  "base": "https://clausepact-inclover05s-projects.vercel.app",
   "contract": "0x96F604f62Dcc0957e3ea8554779EB4B5BE4bfae3",
   "chainWritesSent": false,
   "checks": [
@@ -37,15 +37,15 @@
       "name": "valid creation fee estimate without a write",
       "ok": true,
       "evidence": {
-        "maximumFeeGEN": "0.00022952010006825",
-        "expiresAt": 1792290310
+        "maximumFeeGEN": "0.0002036820380787",
+        "expiresAt": 1792310233
       }
     },
     {
       "name": "track publish",
       "ok": true,
       "evidence": {
-        "state": "provisional",
+        "state": "finalized",
         "genHash": "0x518b534ba5d1214776db8321d2c2edfbcc70937cdf1d85ec0e4777975c7c4597"
       }
     },
@@ -53,7 +53,7 @@
       "name": "track accept",
       "ok": true,
       "evidence": {
-        "state": "provisional",
+        "state": "finalized",
         "genHash": "0x4cc7275b67b5bdf2767407bcf045c7b7fa93515fcd192d31f7673591f019bd35"
       }
     },
@@ -61,7 +61,7 @@
       "name": "track already-required",
       "ok": true,
       "evidence": {
-        "state": "provisional",
+        "state": "finalized",
         "genHash": "0x7e45b2206c994d2ffe7b998217d060867978e7065d7b19c9a1ec1d4de995036c",
         "classification": "Already required"
       }
@@ -70,8 +70,43 @@
       "name": "track clarification",
       "ok": true,
       "evidence": {
-        "state": "pending",
+        "state": "no_consensus",
         "genHash": "0x7a1a1eee685765e346482d39a2ffdafe3ee5f79b7e4e040d13c470a8fd2ae15a"
+      }
+    },
+    {
+      "name": "track additional-scope",
+      "ok": true,
+      "evidence": {
+        "state": "finalized",
+        "genHash": "0xdb0d1c440357cf61bb4215d5c332ddd74029f9eaefea8ed9c92fc5fe3979e314",
+        "classification": "Additional scope"
+      }
+    },
+    {
+      "name": "track ambiguous",
+      "ok": true,
+      "evidence": {
+        "state": "finalized",
+        "genHash": "0x76f51b79ff151e2a2caa40c1bf5f0998f62b2241b7f067a0f192f932a821de0e",
+        "classification": "Ambiguous"
+      }
+    },
+    {
+      "name": "track prompt-injection",
+      "ok": true,
+      "evidence": {
+        "state": "no_consensus",
+        "genHash": "0xedc1e59335c9c069bae1a16a838d62c98dec69297b5fca30794b88ebdc93e691"
+      }
+    },
+    {
+      "name": "track clarification-followup",
+      "ok": true,
+      "evidence": {
+        "state": "provisional",
+        "genHash": "0x6ce83319882b1d86c12514ab2d101bee06f85c1f28013a90368055d89d8d97b3",
+        "classification": "Clarification"
       }
     },
     {
@@ -87,13 +122,61 @@
       "evidence": {
         "accepted": true,
         "requestIds": [
-          "ceeec110-5590-462b-906d-585b9ec688fa"
+          "ceeec110-5590-462b-906d-585b9ec688fa",
+          "b5cd47b0-0df0-4053-b589-450a38ede361",
+          "f341a798-f371-4a23-b905-2dbdd2cfe5a2",
+          "898df58a-3fd6-4bd2-a2f6-5cb9d9dda032"
         ]
       }
+    },
+    {
+      "name": "finalized ruling already-required",
+      "ok": true,
+      "evidence": {
+        "id": "ceeec110-5590-462b-906d-585b9ec688fa",
+        "classification": "Already required"
+      }
+    },
+    {
+      "name": "no finalized verdict for clarification",
+      "ok": true,
+      "evidence": {
+        "id": "418736b5-c3d3-4d8d-b2c9-8bed9c9672f5",
+        "state": "no_consensus",
+        "finalizedRecord": null
+      }
+    },
+    {
+      "name": "finalized ruling additional-scope",
+      "ok": true,
+      "evidence": {
+        "id": "b5cd47b0-0df0-4053-b589-450a38ede361",
+        "classification": "Additional scope"
+      }
+    },
+    {
+      "name": "finalized ruling ambiguous",
+      "ok": true,
+      "evidence": {
+        "id": "f341a798-f371-4a23-b905-2dbdd2cfe5a2",
+        "classification": "Ambiguous"
+      }
+    },
+    {
+      "name": "no finalized verdict for prompt-injection",
+      "ok": true,
+      "evidence": {
+        "id": "1b781814-ef09-4efd-8986-b53596c2c618",
+        "state": "no_consensus",
+        "finalizedRecord": null
+      }
+    },
+    {
+      "name": "no finalized verdict for clarification-followup",
+      "ok": false,
+      "error": "Provisional or failed consensus must not appear as a finalized ruling.\n+ actual - expected\n\n+ {\n+   agreement_hash: '06235648b9334fdd6a500e2a80c780f7e25c4534ebe5571cfc462a6d44604a2c',\n+   agreement_id: 'e98d57ef-2fc5-4903-ab9f-7d36df8c5084'"
     }
   ],
   "ok": false,
-  "completedAt": "2026-10-18T02:20:23.384Z",
-  "superseded": true,
-  "note": "Initial legacy-variant-only reads did not establish finality. This report is superseded by the explicit status-filter fix and requires rerunning the final live API gate."
+  "completedAt": "2026-10-18T07:52:44.353Z"
 }

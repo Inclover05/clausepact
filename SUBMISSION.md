@@ -6,6 +6,12 @@
 **Intelligent Contract:** `0x96F604f62Dcc0957e3ea8554779EB4B5BE4bfae3`  
 **Policy:** `scopelock-scope-v1`
 
+**Demo:** [60-second edited screen-capture walkthrough](https://clausepact-inclover05s-projects.vercel.app/demo.mp4). It shows the actual interface and real finalized agreement/ruling pages; it does not record browser-extension signing.
+
+**Finalized examples:** [Already required](https://clausepact-inclover05s-projects.vercel.app/rulings/ceeec110-5590-462b-906d-585b9ec688fa), [Additional scope](https://clausepact-inclover05s-projects.vercel.app/rulings/b5cd47b0-0df0-4053-b589-450a38ede361), [Ambiguous](https://clausepact-inclover05s-projects.vercel.app/rulings/f341a798-f371-4a23-b905-2dbdd2cfe5a2).
+
+The original Clarification and injection-bearing live checks finalized without consensus and have no verdict. A separately initiated Clarification follow-up reached Accepted with a Clarification result; its finality remains unverified at this release check. See the exact transaction states and identifiers in `reports/live-verification.json`.
+
 ## Description
 
 ClausePact resolves a common disagreement in bounty work: does “one more thing” belong to the original brief? A creator publishes numbered requirements, a named contributor accepts their exact hash, and either participant can submit a later work request. GenLayer classifies it as Already required, Clarification, Additional scope or Ambiguous, with original-clause references and a grounded explanation.

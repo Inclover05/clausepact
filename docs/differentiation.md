@@ -1,6 +1,6 @@
 # Distinct contribution and reuse
 
-Checked 18 October 2026 against the official [hackathon showcase](https://portal.genlayer.foundation/hackathon-winners/) and [ecosystem wall](https://portal.genlayer.foundation/ecosystem-partners/). Public listings are not a complete inventory of submissions. No claim is made that ScopeLock is the first or only scope-change tool.
+Checked 18 October 2026 against the official [hackathon showcase](https://portal.genlayer.foundation/hackathon-winners/) and [ecosystem wall](https://portal.genlayer.foundation/ecosystem-partners/). Public listings are not a complete inventory of submissions. No claim is made that ClausePact is the first or only scope-change tool.
 
 | Project | Documented focus | ClausePact's difference |
 | --- | --- | --- |
@@ -15,4 +15,4 @@ Reused engineering: selected ClaimLens wallet utilities, endpoint separation, fe
 
 The [Builder Program announcement](https://talks.genlayer.foundation/t/introducing-genlayers-incentivized-builders-program/20) describes novelty, complexity and impact as review factors. Only stewards decide acceptance and duplicate treatment. No portal submission has been made by this implementation.
 
-The exact-name check was expanded during release preparation and found the independent GenLayer project above, plus conventional scope-management products using ScopeLock. The public branding decision must acknowledge that collision. Differentiation rests on the actual contract workflow, not a renamed UI or a promise that no similar product exists.
+The exact-name check was expanded during release preparation and found the independent GenLayer project above, plus conventional scope-management products using ScopeLock. With explicit user approval, the public app, GitHub repository and Vercel project were renamed ClausePact. Deployed technical identifiers and immutable earlier test records retain the original codename. Differentiation rests on the actual contract workflow, not a renamed UI or a promise that no similar product exists.

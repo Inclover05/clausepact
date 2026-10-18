@@ -5,6 +5,7 @@ import { testnetBradbury } from 'genlayer-js/chains';
 import { createPublicClient, http, encodeFunctionData, decodeFunctionData, parseEventLogs, toHex, fromHex, formatEther, type Hex } from 'viem';
 import { POLICY, ADDRESS, ID, HASH, validateBrief, lifecycle, rulingMatches } from './core.mjs';
 import type { Action, Agreement, Ruling } from './types';
+import { matchesFinalizedWrite, successfulFinality } from './finality.mjs';
 export const EVM_RPC='https://rpc.testnet-chain.genlayer.com';
 export const GEN_RPC='https://rpc-bradbury.genlayer.com';
 const chain={...testnetBradbury,rpcUrls:{default:{http:[EVM_RPC]}}};
@@ -14,6 +15,27 @@ export const consensus=chain.consensusMainContract!;
 export const configured=()=>process.env.NEXT_PUBLIC_SCOPELOCK_CONTRACT || '';
 const digest=(value:string)=>createHash('sha256').update(value).digest('hex');
 export function calldata(method:string,args:string[]){return abi.transactions.serialize([abi.calldata.encode(abi.calldata.makeCalldataObject(method,args,undefined)),false]);}
+type FinalizedRow={txId:Hex;status:number;result:number;recipient:string;sender:string;txCalldata:Hex};
+type FinalityContext={rows?:Promise<readonly FinalizedRow[]>;checks:Map<string,Promise<boolean>>};
+export function finalityContext():FinalityContext{return {checks:new Map()};}
+async function finalizedWrite(method:string,args:string[],sender:string,context:FinalityContext){
+ const contract=configured();const data=calldata(method,args);const key=`${sender}:${data}`;
+ if(!context.rows)context.rows=(async()=>{
+  const source=chain.consensusDataContract!;
+  const count=await evm.readContract({address:source.address,abi:source.abi,functionName:'getLatestFinalizedTxCount',args:[contract as Hex]}) as bigint;
+  // Bound anonymous reads. Older writes fail closed rather than inherit a final label.
+  const start=count>1000n?count-1000n:0n;
+  const pages=[];
+  for(let offset=start;offset<count;offset+=50n)pages.push(evm.readContract({address:source.address,abi:source.abi,functionName:'getLatestFinalizedTransactions',args:[contract as Hex,offset,50n]}));
+  return (await Promise.all(pages)).flat() as readonly FinalizedRow[];
+ })();
+ if(!context.checks.has(key))context.checks.set(key,(async()=>{
+  const matches=(await context.rows!).filter(row=>matchesFinalizedWrite(row,contract,sender,data));
+  for(const row of matches){if(successfulFinality(await gen.getTransaction({hash:row.txId as GenHash})))return true;}
+  return false;
+ })());
+ return context.checks.get(key)!;
+}
 export async function rpc(method:string,params:unknown[]){
  const response=await fetch(GEN_RPC,{method:'POST',headers:{'Content-Type':'application/json','User-Agent':'ScopeLock/1.0'},body:JSON.stringify({jsonrpc:'2.0',id:1,method,params}),signal:AbortSignal.timeout(20000),cache:'no-store'});
  if(!response.ok)throw Error('GenLayer is unavailable. Saved transactions will not be resent.');
@@ -26,22 +48,33 @@ export async function read(method:string,args:string[],final=true):Promise<strin
  const hex=typeof raw==='string'?raw:raw.data;if(typeof hex!=='string')throw Error('Invalid contract response.');
  return String(abi.calldata.decode(fromHex((hex.startsWith('0x')?hex:`0x${hex}`) as Hex,'bytes')));
 }
-export async function agreement(id:string,final=true):Promise<Agreement|null>{
+export async function agreement(id:string,final=true,context=finalityContext()):Promise<Agreement|null>{
  if(!ID.test(id))throw Error('Invalid agreement ID.');const raw=await read('get_agreement',[id],final);if(!raw)return null;
  const value=JSON.parse(raw) as Agreement;
  if(value.id!==id||value.policy!==POLICY||digest(value.payload)!==value.agreement_hash)throw Error('Agreement provenance failed.');
  validateBrief(JSON.parse(value.payload),value.creator);
  const payload=JSON.parse(value.payload);
  if(payload.contributor!==value.contributor||payload.title!==value.title||JSON.stringify(payload.requirements)!==JSON.stringify(value.requirements))throw Error('Agreement fields do not match the frozen brief.');
+ if(final){
+  if(!await finalizedWrite('create_agreement',[value.payload],value.creator,context))return null;
+  if(value.accepted&&!await finalizedWrite('accept_agreement',[id,value.agreement_hash],value.contributor,context))return {...value,accepted:false};
+ }
  return value;
 }
-export async function ruling(id:string,final=true):Promise<Ruling|null>{
+export async function ruling(id:string,final=true,context=finalityContext()):Promise<Ruling|null>{
  if(!ID.test(id))throw Error('Invalid request ID.');const raw=await read('get_ruling',[id],final);if(!raw)return null;
  const value=JSON.parse(raw) as Ruling;const data=JSON.parse(value.payload);
  if(value.id!==id||!rulingMatches(value,data,digest(value.payload)))throw Error('Ruling provenance failed.');
- const brief=await agreement(value.agreement_id,final);
+ if(final&&!await finalizedWrite('request_ruling',[value.payload],value.sender,context))return null;
+ const brief=await agreement(value.agreement_id,final,context);
  if(!brief?.accepted||brief.agreement_hash!==value.agreement_hash||![brief.creator,brief.contributor].includes(value.sender)||!Array.isArray(value.clause_ids)||value.clause_ids.some(x=>!Number.isInteger(x)||x<1||x>brief.requirements.length))throw Error('Ruling does not match its accepted agreement.');
  return value;
+}
+export async function finalizedRequests(id:string,context=finalityContext()){
+ const ids=JSON.parse(await read('get_requests',[id])) as string[];
+ const selected=ids.slice(-100).filter(x=>ID.test(x));
+ const records=await Promise.all(selected.map(x=>ruling(x,true,context)));
+ return records.filter((x):x is Ruling=>Boolean(x)).map(x=>x.id);
 }
 export async function validateAction(action:Action){
  if(!action||action.contract?.toLowerCase()!==configured().toLowerCase()||!ADDRESS.test(action.contract)||!ADDRESS.test(action.from)||!Array.isArray(action.args)||action.args.some(x=>typeof x!=='string')||JSON.stringify(action).length>24000)throw Error('Invalid transaction request.');

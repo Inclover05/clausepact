@@ -18,7 +18,7 @@
       "to": "0x0112Bf6e83497965A5fdD6Dad1E447a6E004271D",
       "nonce": 35,
       "maximumNetworkFeeGEN": "0.0002985928790112",
-      "state": "provisional",
+      "state": "finalized",
       "createdAt": "2026-10-18T02:18:11.603Z",
       "method": "create_agreement",
       "args": [
@@ -27,7 +27,7 @@
       "evmHash": "0xaf851bab055e7e9fa8f76d8c1e71557e997aee9a65ef976eba2da7929a58fd8f",
       "networkFeeGEN": "0.00023608023405255",
       "genHash": "0x518b534ba5d1214776db8321d2c2edfbcc70937cdf1d85ec0e4777975c7c4597",
-      "consensusStatus": "ACCEPTED",
+      "consensusStatus": "FINALIZED",
       "executionResult": "FINISHED_WITH_RETURN",
       "result": "AGREE",
       "record": {
@@ -52,7 +52,7 @@
       "to": "0x0112Bf6e83497965A5fdD6Dad1E447a6E004271D",
       "nonce": 1,
       "maximumNetworkFeeGEN": "0.00020968143410985",
-      "state": "provisional",
+      "state": "finalized",
       "createdAt": "2026-10-18T02:18:40.953Z",
       "method": "accept_agreement",
       "args": [
@@ -62,7 +62,7 @@
       "evmHash": "0x655e23cea6a48d9902d9d2b4b1c2aaac2df9cd130073154fabb8083a82417036",
       "networkFeeGEN": "0.00016535514250965",
       "genHash": "0x4cc7275b67b5bdf2767407bcf045c7b7fa93515fcd192d31f7673591f019bd35",
-      "consensusStatus": "ACCEPTED",
+      "consensusStatus": "FINALIZED",
       "executionResult": "FINISHED_WITH_RETURN",
       "result": "AGREE",
       "record": {
@@ -87,7 +87,7 @@
       "to": "0x0112Bf6e83497965A5fdD6Dad1E447a6E004271D",
       "nonce": 36,
       "maximumNetworkFeeGEN": "0.0002463290108409",
-      "state": "provisional",
+      "state": "finalized",
       "createdAt": "2026-10-18T02:19:12.331Z",
       "method": "request_ruling",
       "args": [
@@ -97,7 +97,7 @@
       "expected": "Already required",
       "networkFeeGEN": "0.00019450664467215",
       "genHash": "0x7e45b2206c994d2ffe7b998217d060867978e7065d7b19c9a1ec1d4de995036c",
-      "consensusStatus": "ACCEPTED",
+      "consensusStatus": "FINALIZED",
       "executionResult": "FINISHED_WITH_RETURN",
       "result": "AGREE",
       "record": {
@@ -124,7 +124,7 @@
       "to": "0x0112Bf6e83497965A5fdD6Dad1E447a6E004271D",
       "nonce": 37,
       "maximumNetworkFeeGEN": "0.0002451847802724",
-      "state": "pending",
+      "state": "no_consensus",
       "createdAt": "2026-10-18T02:19:44.181Z",
       "method": "request_ruling",
       "args": [
@@ -136,7 +136,7 @@
       "genHash": "0x7a1a1eee685765e346482d39a2ffdafe3ee5f79b7e4e040d13c470a8fd2ae15a",
       "executionResult": "FINISHED_WITH_RETURN",
       "result": "IDLE",
-      "consensusStatus": "LEADER_TIMEOUT"
+      "consensusStatus": "FINALIZED"
     },
     "additional-scope": {
       "name": "additional-scope",
@@ -144,7 +144,7 @@
       "to": "0x0112Bf6e83497965A5fdD6Dad1E447a6E004271D",
       "nonce": 38,
       "maximumNetworkFeeGEN": "0.0002406380554983",
-      "state": "pending",
+      "state": "finalized",
       "createdAt": "2026-10-18T02:20:17.715Z",
       "method": "request_ruling",
       "args": [
@@ -154,9 +154,26 @@
       "expected": "Additional scope",
       "networkFeeGEN": "0.0001894671185292",
       "genHash": "0xdb0d1c440357cf61bb4215d5c332ddd74029f9eaefea8ed9c92fc5fe3979e314",
-      "consensusStatus": "PENDING",
-      "executionResult": "NOT_VOTED",
-      "result": "IDLE"
+      "consensusStatus": "FINALIZED",
+      "executionResult": "FINISHED_WITH_RETURN",
+      "result": "AGREE",
+      "record": {
+        "agreement_hash": "06235648b9334fdd6a500e2a80c780f7e25c4534ebe5571cfc462a6d44604a2c",
+        "agreement_id": "e98d57ef-2fc5-4903-ab9f-7d36df8c5084",
+        "basis": "ADDS_OBLIGATION",
+        "classification": "Additional scope",
+        "clause_ids": [
+          1
+        ],
+        "explanation": "Requirement 1 expressly excludes an online store, checkout and payment integration. The request to add them constitutes a distinct new obligation that materially expands the agreed scope.",
+        "id": "b5cd47b0-0df0-4053-b589-450a38ede361",
+        "limitations": "",
+        "payload": "{\"id\":\"b5cd47b0-0df0-4053-b589-450a38ede361\",\"policy\":\"scopelock-scope-v1\",\"sender\":\"0xfa47b90a45f11e1b8e5f1fefcc8f248c6ddbcdf1\",\"agreement_id\":\"e98d57ef-2fc5-4903-ab9f-7d36df8c5084\",\"agreement_hash\":\"06235648b9334fdd6a500e2a80c780f7e25c4534ebe5571cfc462a6d44604a2c\",\"request\":\"Add an online store with a checkout and payment integration.\"}",
+        "policy": "scopelock-scope-v1",
+        "request": "Add an online store with a checkout and payment integration.",
+        "request_hash": "f7c28fa17226279cc33f99fd14eb1e760eed013ecd068c7e1b32a7fb53cf6327",
+        "sender": "0xfa47b90a45f11e1b8e5f1fefcc8f248c6ddbcdf1"
+      }
     },
     "ambiguous": {
       "name": "ambiguous",
@@ -164,7 +181,7 @@
       "to": "0x0112Bf6e83497965A5fdD6Dad1E447a6E004271D",
       "nonce": 39,
       "maximumNetworkFeeGEN": "0.0002452178883747",
-      "state": "pending",
+      "state": "finalized",
       "createdAt": "2026-10-18T02:20:51.587Z",
       "method": "request_ruling",
       "args": [
@@ -174,9 +191,27 @@
       "expected": "Ambiguous",
       "networkFeeGEN": "0.0001936227311058",
       "genHash": "0x76f51b79ff151e2a2caa40c1bf5f0998f62b2241b7f067a0f192f932a821de0e",
-      "consensusStatus": "PENDING",
-      "executionResult": "NOT_VOTED",
-      "result": "IDLE"
+      "consensusStatus": "FINALIZED",
+      "executionResult": "FINISHED_WITH_RETURN",
+      "result": "AGREE",
+      "record": {
+        "agreement_hash": "06235648b9334fdd6a500e2a80c780f7e25c4534ebe5571cfc462a6d44604a2c",
+        "agreement_id": "e98d57ef-2fc5-4903-ab9f-7d36df8c5084",
+        "basis": "MIXED_OR_UNCLEAR",
+        "classification": "Ambiguous",
+        "clause_ids": [
+          1,
+          3
+        ],
+        "explanation": "The request mixes separately classifiable obligations. Making the Contact page email a clickable mailto link restates an existing obligation from requirement 3. However, adding an online store with checkout adds a new obligation that was explicitly excluded in requirement 1.",
+        "id": "f341a798-f371-4a23-b905-2dbdd2cfe5a2",
+        "limitations": "The request contains multiple distinct instructions with different classifications, requiring a mixed assessment.",
+        "payload": "{\"id\":\"f341a798-f371-4a23-b905-2dbdd2cfe5a2\",\"policy\":\"scopelock-scope-v1\",\"sender\":\"0xfa47b90a45f11e1b8e5f1fefcc8f248c6ddbcdf1\",\"agreement_id\":\"e98d57ef-2fc5-4903-ab9f-7d36df8c5084\",\"agreement_hash\":\"06235648b9334fdd6a500e2a80c780f7e25c4534ebe5571cfc462a6d44604a2c\",\"request\":\"Make the Contact page email a clickable mailto link and add an online store with checkout.\"}",
+        "policy": "scopelock-scope-v1",
+        "request": "Make the Contact page email a clickable mailto link and add an online store with checkout.",
+        "request_hash": "9c7d2ed55223fadb12ac65e148e580a2cbed7f5ebccd4248326089df75182011",
+        "sender": "0xfa47b90a45f11e1b8e5f1fefcc8f248c6ddbcdf1"
+      }
     },
     "prompt-injection": {
       "name": "prompt-injection",
@@ -184,7 +219,7 @@
       "to": "0x0112Bf6e83497965A5fdD6Dad1E447a6E004271D",
       "nonce": 40,
       "maximumNetworkFeeGEN": "0.0002504478770622",
-      "state": "pending",
+      "state": "no_consensus",
       "createdAt": "2026-10-18T02:21:26.090Z",
       "method": "request_ruling",
       "args": [
@@ -194,13 +229,52 @@
       "expected": "Additional scope",
       "networkFeeGEN": "0.00019778289149865",
       "genHash": "0xedc1e59335c9c069bae1a16a838d62c98dec69297b5fca30794b88ebdc93e691",
-      "consensusStatus": "PENDING",
-      "executionResult": "NOT_VOTED",
+      "consensusStatus": "FINALIZED",
+      "executionResult": "FINISHED_WITH_RETURN",
       "result": "IDLE"
+    },
+    "clarification-followup": {
+      "name": "clarification-followup",
+      "from": "0xfA47B90A45F11e1B8E5f1FeFCC8f248C6ddbcdf1",
+      "to": "0x0112Bf6e83497965A5fdD6Dad1E447a6E004271D",
+      "nonce": 42,
+      "maximumNetworkFeeGEN": "0.000219119018472",
+      "state": "provisional",
+      "createdAt": "2026-10-18T07:45:19.659Z",
+      "method": "request_ruling",
+      "args": [
+        "{\"id\":\"898df58a-3fd6-4bd2-a2f6-5cb9d9dda032\",\"policy\":\"scopelock-scope-v1\",\"sender\":\"0xfa47b90a45f11e1b8e5f1fefcc8f248c6ddbcdf1\",\"agreement_id\":\"e98d57ef-2fc5-4903-ab9f-7d36df8c5084\",\"agreement_hash\":\"06235648b9334fdd6a500e2a80c780f7e25c4534ebe5571cfc462a6d44604a2c\",\"request\":\"Please use Inter as the font for the three agreed pages, rather than choosing another font.\"}"
+      ],
+      "evmHash": "0x808c3cb33e24dbb063b7d2f0d17825ff123680a2f3c813cf36f0ab20fe88c6ab",
+      "expected": "Clarification",
+      "reason": "Explicitly initiated fresh test after the original finalized without consensus and final-state read-back confirmed no stored ruling. The original attempt remains preserved.",
+      "networkFeeGEN": "0.0001730475192546",
+      "genHash": "0x6ce83319882b1d86c12514ab2d101bee06f85c1f28013a90368055d89d8d97b3",
+      "consensusStatus": "ACCEPTED",
+      "executionResult": "FINISHED_WITH_RETURN",
+      "result": "AGREE",
+      "record": {
+        "agreement_hash": "06235648b9334fdd6a500e2a80c780f7e25c4534ebe5571cfc462a6d44604a2c",
+        "agreement_id": "e98d57ef-2fc5-4903-ab9f-7d36df8c5084",
+        "basis": "FILLS_OPEN_DETAIL",
+        "classification": "Clarification",
+        "clause_ids": [
+          2
+        ],
+        "explanation": "The request supplies a specific font choice (Inter), resolving an open parameter explicitly permitted by the requirements which state the creator may supply a preferred font.",
+        "id": "898df58a-3fd6-4bd2-a2f6-5cb9d9dda032",
+        "limitations": "None",
+        "payload": "{\"id\":\"898df58a-3fd6-4bd2-a2f6-5cb9d9dda032\",\"policy\":\"scopelock-scope-v1\",\"sender\":\"0xfa47b90a45f11e1b8e5f1fefcc8f248c6ddbcdf1\",\"agreement_id\":\"e98d57ef-2fc5-4903-ab9f-7d36df8c5084\",\"agreement_hash\":\"06235648b9334fdd6a500e2a80c780f7e25c4534ebe5571cfc462a6d44604a2c\",\"request\":\"Please use Inter as the font for the three agreed pages, rather than choosing another font.\"}",
+        "policy": "scopelock-scope-v1",
+        "request": "Please use Inter as the font for the three agreed pages, rather than choosing another font.",
+        "request_hash": "83c6a68a2514df8ab6d782d203f9b0f1ccf422ef6f20b3420d8dc5cffd9549e5",
+        "sender": "0xfa47b90a45f11e1b8e5f1fefcc8f248c6ddbcdf1"
+      }
     }
   },
   "scope": "Real Bradbury transactions with two encrypted test signers. These are contract/API checks, not proof of browser wallet signing.",
   "sourceAndPolicyVerified": true,
-  "checkedAt": "2026-10-18T02:24:49.996Z",
-  "allFinalized": false
+  "checkedAt": "2026-10-18T07:47:19.872Z",
+  "allProtocolFinalized": false,
+  "allSuccessful": false
 }

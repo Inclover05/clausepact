@@ -1,19 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { agreement, ruling, read, quote, track, configured } from '@/lib/chain';
+import { agreement, ruling, read, quote, track, configured, finalityContext, finalizedRequests } from '@/lib/chain';
 import { ADDRESS, ID, POLICY } from '@/lib/core.mjs';
 import examples from '@/public/examples.json';
 export const dynamic='force-dynamic';
 export async function GET(request:NextRequest){
  try{
   const params=request.nextUrl.searchParams;const kind=params.get('kind');const id=params.get('id')||'';
-  if(kind==='config')return NextResponse.json({contract:configured(),policy:POLICY,chainId:4221,examples});
-  if(kind==='agreement')return NextResponse.json({record:await agreement(id),requestIds:JSON.parse(await read('get_requests',[id]))});
+  if(kind==='config'){
+   const visibleExamples=(examples as {contract?:string}).contract?.toLowerCase()===configured().toLowerCase()?examples:{agreementId:null,rulings:[],checkedAt:null};
+   return NextResponse.json({contract:configured(),policy:POLICY,chainId:4221,examples:visibleExamples});
+  }
+  if(kind==='agreement'){
+   const context=finalityContext();const record=await agreement(id,true,context);
+   return NextResponse.json({record,requestIds:record?await finalizedRequests(id,context):[]});
+  }
   if(kind==='ruling')return NextResponse.json({record:await ruling(id)});
   if(kind==='inbox'){
    if(!ADDRESS.test(id))throw Error('Invalid wallet.');
    const ids=JSON.parse(await read('get_inbox',[id.toLowerCase()])) as string[];
    const offset=Math.max(0,Number(params.get('offset'))||0);const selected=ids.slice().reverse().slice(offset,offset+20).filter(x=>ID.test(x));
-   const records=await Promise.all(selected.map(x=>agreement(x)));
+   const context=finalityContext();const records=await Promise.all(selected.map(x=>agreement(x,true,context)));
    return NextResponse.json({records:records.filter(Boolean),total:ids.length,nextOffset:offset+selected.length});
   }
   throw Error('Unknown read operation.');

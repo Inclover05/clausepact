@@ -34,3 +34,11 @@ test('damaged pending records fail closed instead of losing the repayment lock',
  assert.equal(parsePending(JSON.stringify(record)).state,'uncertain');
  assert.throws(()=>parsePending(JSON.stringify({...record,hash:'not-a-hash'})));
 });
+test('restored result labels require a fresh chain reconciliation',()=>{
+ const action={contract:contributor,from:creator,method:'create_agreement',args:[JSON.stringify(brief)]};
+ const hash='0x'+'1'.repeat(64);
+ assert.equal(parsePending(JSON.stringify({action,hash,state:'finalized'})).state,'pending');
+ assert.equal(parsePending(JSON.stringify({action,hash,state:'no_consensus'})).state,'pending');
+ assert.throws(()=>parsePending(JSON.stringify({action,hash,state:'rejected'})));
+ assert.throws(()=>parsePending(JSON.stringify({action,state:'finalized'})));
+});

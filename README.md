@@ -9,6 +9,9 @@ Two wallets agree on a frozen bounty brief. When a later request arrives, GenLay
 - Network: GenLayer Bradbury, chain ID 4221 (test GEN only)
 - Policy: `scopelock-scope-v1`
 - Contract: `0x96F604f62Dcc0957e3ea8554779EB4B5BE4bfae3`
+- [Edited demo walkthrough](https://clausepact-inclover05s-projects.vercel.app/demo.mp4) — actual UI captures; browser wallet signing is not shown.
+
+The interface uses a black and purple glass design, with translucent surfaces, restrained highlights, visible focus states, readable text and reduced-motion support.
 
 Read [release evidence](reports/verification.md) for actual deployment, execution, consensus and finality states. A deployed address or an Accepted transaction is not proof of a finalized successful ruling.
 

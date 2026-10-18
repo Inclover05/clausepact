@@ -36,5 +36,17 @@
       "ok": null,
       "reason": "No extension wallet in the test browser. Encrypted local signers and provider fixtures are separate evidence."
     }
-  ]
+  ],
+  "themeRecheck": {
+    "checkedAt": "2026-10-18T07:50:33.977Z",
+    "base": "https://clausepact-inclover05s-projects.vercel.app",
+    "palette": "purple and black",
+    "surfaces": "translucent glass",
+    "desktopWidth": 1440,
+    "mobileWidth": 390,
+    "horizontalOverflow": false,
+    "publicAgreement": "e98d57ef-2fc5-4903-ab9f-7d36df8c5084",
+    "publicRuling": "b5cd47b0-0df0-4053-b589-450a38ede361",
+    "consoleErrors": []
+  }
 }

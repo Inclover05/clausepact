@@ -1,115 +1,110 @@
 {
-  "attempts": {},
+  "attempts": {
+    "0xedc1e59335c9c069bae1a16a838d62c98dec69297b5fca30794b88ebdc93e691": {
+      "genHash": "0xedc1e59335c9c069bae1a16a838d62c98dec69297b5fca30794b88ebdc93e691",
+      "name": "prompt-injection",
+      "nonce": 41,
+      "maximumNetworkFeeGEN": "0.000093725813421",
+      "state": "broadcast",
+      "evmHash": "0x3ade09c7e80ec707d8662f863b9d4245de858dc21742e90fd2006d5232366b52"
+    }
+  },
   "deployment": {
     "name": "deployment",
     "genHash": "0x46b2982585eacbdff8e1d43dbda3970fe0905fca1b000259d0d3d4240a02db76",
-    "status": "ACCEPTED",
+    "status": "FINALIZED",
     "execution": "FINISHED_WITH_RETURN",
     "result": "AGREE",
     "canFinalize": false,
     "readiness": [
-      false,
-      "1792290179",
-      "1792291604"
+      false
     ],
-    "checkedAt": "2026-10-18T02:23:03.104Z"
+    "checkedAt": "2026-10-18T07:44:14.075Z"
   },
   "publish": {
     "name": "publish",
     "genHash": "0x518b534ba5d1214776db8321d2c2edfbcc70937cdf1d85ec0e4777975c7c4597",
-    "status": "ACCEPTED",
+    "status": "FINALIZED",
     "execution": "FINISHED_WITH_RETURN",
     "result": "AGREE",
     "canFinalize": false,
     "readiness": [
-      false,
-      "1792290181",
-      "1792291700"
+      false
     ],
-    "checkedAt": "2026-10-18T02:23:03.862Z"
+    "checkedAt": "2026-10-18T07:44:14.589Z"
   },
   "accept": {
     "name": "accept",
     "genHash": "0x4cc7275b67b5bdf2767407bcf045c7b7fa93515fcd192d31f7673591f019bd35",
-    "status": "ACCEPTED",
+    "status": "FINALIZED",
     "execution": "FINISHED_WITH_RETURN",
     "result": "AGREE",
     "canFinalize": false,
     "readiness": [
-      false,
-      "1792290182",
-      "1792291729"
+      false
     ],
-    "checkedAt": "2026-10-18T02:23:04.609Z"
+    "checkedAt": "2026-10-18T07:44:15.072Z"
   },
   "already-required": {
     "name": "already-required",
     "genHash": "0x7e45b2206c994d2ffe7b998217d060867978e7065d7b19c9a1ec1d4de995036c",
-    "status": "ACCEPTED",
+    "status": "FINALIZED",
     "execution": "FINISHED_WITH_RETURN",
     "result": "AGREE",
     "canFinalize": false,
     "readiness": [
-      false,
-      "1792290183",
-      "1792291781"
+      false
     ],
-    "checkedAt": "2026-10-18T02:23:05.348Z"
+    "checkedAt": "2026-10-18T07:44:15.585Z"
   },
   "clarification": {
     "name": "clarification",
     "genHash": "0x7a1a1eee685765e346482d39a2ffdafe3ee5f79b7e4e040d13c470a8fd2ae15a",
-    "status": "LEADER_TIMEOUT",
+    "status": "FINALIZED",
     "execution": "FINISHED_WITH_RETURN",
     "result": "IDLE",
     "canFinalize": false,
     "readiness": [
-      false,
-      "1792290184",
-      "1792291820"
+      false
     ],
-    "checkedAt": "2026-10-18T02:23:06.103Z"
+    "checkedAt": "2026-10-18T07:44:16.084Z"
   },
   "additional-scope": {
     "name": "additional-scope",
     "genHash": "0xdb0d1c440357cf61bb4215d5c332ddd74029f9eaefea8ed9c92fc5fe3979e314",
-    "status": "PENDING",
-    "execution": "NOT_VOTED",
-    "result": "IDLE",
+    "status": "FINALIZED",
+    "execution": "FINISHED_WITH_RETURN",
+    "result": "AGREE",
     "canFinalize": false,
     "readiness": [
-      false,
-      "1792290185",
-      "0"
+      false
     ],
-    "checkedAt": "2026-10-18T02:23:06.901Z"
+    "checkedAt": "2026-10-18T07:44:16.574Z"
   },
   "ambiguous": {
     "name": "ambiguous",
     "genHash": "0x76f51b79ff151e2a2caa40c1bf5f0998f62b2241b7f067a0f192f932a821de0e",
-    "status": "PENDING",
-    "execution": "NOT_VOTED",
-    "result": "IDLE",
+    "status": "FINALIZED",
+    "execution": "FINISHED_WITH_RETURN",
+    "result": "AGREE",
     "canFinalize": false,
     "readiness": [
-      false,
-      "1792290185",
-      "0"
+      false
     ],
-    "checkedAt": "2026-10-18T02:23:07.661Z"
+    "checkedAt": "2026-10-18T07:44:17.079Z"
   },
   "prompt-injection": {
     "name": "prompt-injection",
     "genHash": "0xedc1e59335c9c069bae1a16a838d62c98dec69297b5fca30794b88ebdc93e691",
-    "status": "PENDING",
-    "execution": "NOT_VOTED",
+    "status": "READY_TO_FINALIZE",
+    "execution": "FINISHED_WITH_RETURN",
     "result": "IDLE",
-    "canFinalize": false,
+    "canFinalize": true,
     "readiness": [
-      false,
-      "1792290185",
-      "0"
+      true,
+      "1792309455",
+      "15877"
     ],
-    "checkedAt": "2026-10-18T02:23:08.390Z"
+    "checkedAt": "2026-10-18T07:44:18.293Z"
   }
 }

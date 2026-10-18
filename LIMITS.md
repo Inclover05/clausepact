@@ -14,6 +14,7 @@
 - An uncertain wallet response retains the submission lock. Attach the existing EVM hash after checking wallet activity. Clearing browser storage or changing origin loses local recovery data; preserve your hash externally. No automatic rebroadcast occurs.
 - Wallet account selection is held in memory; reconnect after a full reload. The draft and transaction are restored separately. Modern browsers with Web Locks and an EVM wallet are required for submission.
 - Wallet agreement indexes and per-agreement ruling lists grow on-chain; no throughput or large-index benchmarks have been performed. The API paginates inbox results; v1 is intended for modest testnet use.
+- Public finality proofs inspect at most the latest 1,000 finalized transactions on this deployment. Older records are withheld when their publication, acceptance or ruling proof falls outside that window. Agreement pages inspect the latest 100 stored ruling IDs. These limits need an indexing/navigation improvement before larger deployments.
 - This deployment shares one contract execution queue. A consensus-stage timeout can delay later requests, including unrelated agreements, until protocol recovery; creating a second payment for the same request does not repair that queue.
 - Protocol appeals remain accessible through GenLayer tooling during the appeal window; the v1 website does not include an appeal transaction composer.
 - Test fixtures are not live model or committee evidence. Refer to the release ledger for observed live states. Portal acceptance and uniqueness are not guaranteed.

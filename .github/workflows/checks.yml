@@ -1,4 +1,4 @@
-name: ScopeLock checks
+name: ClausePact checks
 on:
   push:
   pull_request:
