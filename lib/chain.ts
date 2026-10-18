@@ -88,5 +88,5 @@ export async function track(action:Action,hash:string){
    if(!record||record.agreement_hash!==(input?digest(action.args[0]):action.args[1])||(action.method==='accept_agreement'&&!record.accepted))throw Error('Agreement read-back did not match the transaction.');
   }
  }
- return {state,genHash,record,error:state==='execution_failed'?'GenLayer execution failed. No ruling was issued.':state==='no_consensus'?'No agreed successful outcome. No ruling was issued.':undefined};
+ return {state,genHash,record,protocolStatus:transaction.statusName,error:state==='execution_failed'?'GenLayer execution failed. No ruling was issued.':state==='no_consensus'?'No agreed successful outcome. No ruling was issued.':['LEADER_TIMEOUT','VALIDATORS_TIMEOUT'].includes(String(transaction.statusName))?'The protocol reports a consensus-stage timeout and is awaiting recovery. No agreed ruling is available. The existing transaction has not been resent.':undefined};
 }

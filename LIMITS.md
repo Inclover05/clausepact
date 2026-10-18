@@ -6,7 +6,7 @@
 - Classifications interpret agreed requirements. They cannot prove who made a request, whether work was delivered, or whether either party has legal rights.
 - Both wallets must approve one frozen version. There is no amendment, revocation or automatic expiry; create and accept a new agreement instead.
 - Mixed requests, contradictory clauses and missing context can appropriately receive Ambiguous. Model judgments are not infallible. Prompt isolation and independent review reduce risks but cannot guarantee immunity to prompt injection or collusion.
-- A ruling uses one leader model call and one call per validator. Provider failure, malformed responses, validator disagreement or protocol timeouts can prevent a result. The app distinguishes this from an agreed Ambiguous classification.
+- A ruling uses one leader model call and two calls per validator. Provider failure, malformed responses, validator disagreement or protocol timeouts can prevent a result. The app distinguishes this from an agreed Ambiguous classification.
 - Each ruling references the brief and request hashes. Duplicate successful requests with the same trimmed text in one agreement are rejected; differently worded or failed requests can be submitted only through a new, explicitly approved transaction.
 - Accepted is provisional and may change through protocol appeals. Finality is asynchronous and has no application-level deadline. The site does not invent finality from a timer.
 - Public agreement/ruling pages and the acceptance inbox use finalized state. Wait for publication finality before accepting in the UI, and acceptance finality before requesting a ruling. This is slower than the sequential nonfinal contract checks used in the test ledger.
@@ -16,3 +16,4 @@
 - Wallet agreement indexes and per-agreement ruling lists grow on-chain; no throughput or large-index benchmarks have been performed. The API paginates inbox results; v1 is intended for modest testnet use.
 - Protocol appeals remain accessible through GenLayer tooling during the appeal window; the v1 website does not include an appeal transaction composer.
 - Test fixtures are not live model or committee evidence. Refer to the release ledger for observed live states. Portal acceptance and uniqueness are not guaranteed.
+

@@ -25,7 +25,7 @@ Rulings add `classification`, `explanation`, `clause_ids`, `limitations`, and `r
 
 ## Adjudication and boundaries
 
-The leader sees numbered requirements and the submitted request, separated from the policy rubric as untrusted data. It makes one model call. Deterministic validation rejects invalid classifications, malformed fields and invented clause numbers. Validators independently derive a label and audit the proposed reasoning with one model call; classification must agree and reasoning must be substantively valid. Explanation strings do not need to match exactly.
+The leader sees numbered requirements and the submitted request, separated from the policy rubric as untrusted data. It makes one model call and returns a machine-readable decision basis; deterministic code maps the basis to its display classification. Deterministic validation rejects invalid classifications, malformed fields and invented clause numbers. Validators independently derive a basis without seeing the proposal, then separately audit the proposed reasoning, using two bounded model calls; classification must agree and reasoning must be substantively valid. Explanation strings do not need to match exactly.
 
 An invalid model response crosses the replay boundary as immutable error data. Validators must independently reproduce the failure to accept it. Deterministic execution then raises an error and stores no ruling. No consensus likewise stores no successful shared result. Submitted calldata still exists publicly in the transaction.
 
@@ -46,4 +46,5 @@ The two RPCs are `https://rpc.testnet-chain.genlayer.com` for EVM estimates/rece
 
 Fee estimates expire after five minutes. Accounts and network are rechecked immediately before signing. A Web Lock serializes wallet submissions across same-origin tabs, and the saved pending record is rechecked inside that lock. Persist the uncertain attempt before calling the wallet; persist the returned hash immediately. Declined requests unlock; other unknown outcomes retain the lock and allow attaching an existing hash.
 
-Tracking verifies the EVM input before trusting its GenLayer event. Accepted plus successful execution and agreement is provisional; only successful finalized consensus with matching read-back is finalized. `AGREE` and `MAJORITY_AGREE` are both recognized. A finalized error or disagreement is not a ruling. The browser polls every 15 seconds while visible and never sends an automatic retry. Public record pages use finalized state.
+Tracking verifies the EVM input before trusting its GenLayer event. Accepted plus successful execution and agreement is provisional; only successful finalized consensus with matching read-back is finalized. `AGREE` and `MAJORITY_AGREE` are both recognized. A finalized error or disagreement is not a ruling. The browser polls every 15 seconds while visible and never sends an automatic retry. Consensus-stage timeouts remain pending protocol recovery, not an invented verdict. Public record pages use the RPC status filter `finalized` as well as the legacy read variant; testing showed the legacy variant alone returned accepted state.
+
