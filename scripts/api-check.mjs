@@ -2,7 +2,7 @@
 import {readFile,writeFile} from 'node:fs/promises';
 import {randomUUID} from 'node:crypto';
 import assert from 'node:assert/strict';
-const base=process.env.SCOPELOCK_URL||'https://scopelock-inclover05s-projects.vercel.app';
+const base=process.env.SCOPELOCK_URL||'https://clausepact-inclover05s-projects.vercel.app';
 const live=JSON.parse(await readFile('reports/live-verification.json','utf8'));
 const report={checkedAt:new Date().toISOString(),base,contract:live.contract,chainWritesSent:false,checks:[]};
 async function request(path,body){const response=await fetch(base+path,{method:body?'POST':'GET',headers:body?{'Content-Type':'application/json'}:undefined,body:body?JSON.stringify(body):undefined,signal:AbortSignal.timeout(55000)});return {status:response.status,value:await response.json()};}
@@ -33,3 +33,4 @@ if(published?.evmHash)await check('foreign transaction payload rejected',async()
 await check('finalized agreement read-back',async()=>{assert.equal(live.operations.accept.state,'finalized','Acceptance is still provisional; a read alone is not finality proof.');const {status,value}=await request(`/api/chain?kind=agreement&id=${live.agreementId}`);assert.equal(status,200,value.error);assert.equal(value.record?.agreement_hash,live.operations.publish.record.agreement_hash);assert.equal(value.record?.accepted,true);return {accepted:true,requestIds:value.requestIds};});
 for(const op of Object.values(live.operations).filter(x=>x.method==='request_ruling'&&x.record))await check(`finalized ruling ${op.name}`,async()=>{assert.equal(op.state,'finalized','Ruling transaction is still provisional.');const {status,value}=await request(`/api/chain?kind=ruling&id=${op.record.id}`);assert.equal(status,200,value.error);assert.equal(value.record?.request_hash,op.record.request_hash);assert.equal(value.record?.classification,op.record.classification);return {id:value.record.id,classification:value.record.classification};});
 report.ok=report.checks.every(x=>x.ok);report.completedAt=new Date().toISOString();await writeFile('reports/api-verification.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({ok:report.ok,checks:report.checks.map(x=>({name:x.name,ok:x.ok,evidence:x.evidence,error:x.error}))}));if(!report.ok)process.exitCode=1;
+
