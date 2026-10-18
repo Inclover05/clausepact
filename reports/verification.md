@@ -34,7 +34,7 @@ The creator publication and named contributor acceptance both finalized successf
 
 The follow-up was separately initiated only after the original finalized without consensus and a finalized contract read confirmed no stored ruling. It has a new request ID and transaction; the original failure is retained. Provisional is not final. Public example cards include only the three finalized successful rulings.
 
-The expanded public API gate includes anonymous page/configuration access, invalid-operation and same-wallet rejection, a real fee estimate without a write, exact tracking of all submitted operations, changed-payload rejection, finalized agreement/ruling read-back, and withholding provisional or failed-consensus rulings. See `api-verification.json` for the current observed pass count. Its added provisional-read regression initially failed and prompted the direct consensus proof below.
+**Public API gate: 20 checks passed.** This includes anonymous page/configuration access, invalid-operation and same-wallet rejection, a real fee estimate without a write, exact tracking of all submitted operations, changed-payload rejection, finalized agreement/ruling read-back, and withholding provisional or failed-consensus rulings. Its added provisional-read regression initially failed and prompted the direct consensus proof below; the deployed fix passed while the clarification remained provisional. The finalized agreement's public list contained exactly the three finalized successful ruling IDs.
 
 ## Runtime and browser checks
 

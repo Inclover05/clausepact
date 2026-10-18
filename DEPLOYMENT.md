@@ -27,6 +27,6 @@ The network may require an explicit `finalizeTransaction` after its appeal windo
 
 ## Source publication
 
-`scripts/publish-github.mjs` uses Git Credential Manager in memory to create or update only the authenticated user's `scopelock` repository, refuses an unexpected origin, and never logs credentials. The initial publication and later updates must exclude `.wallet`, `.env*`, build outputs and caches. Deploy the intended `main` commit through Vercel after checks pass.
+`scripts/publish-github.mjs` uses Git Credential Manager in memory to create or update only the authenticated user's `clausepact` repository, refuses an unexpected origin, and never logs credentials. The initial publication and later updates must exclude `.wallet`, `.env*`, build outputs and caches. Deploy the intended `main` commit through Vercel after checks pass.
 
 
